@@ -32,23 +32,27 @@ export default function AIChatbot() {
 
   const getBotResponse = (query: string): string => {
     const q = query.toLowerCase();
-    
+
     if (q.includes("edu") || q.includes("ศึกษา") || q.includes("เรียน")) {
       return "ประวัติการศึกษาของนฤดม:\n\n• ปริญญาตรี (กำลังศึกษาปี 2): คณะวิทยาศาสตร์ สาขาเทคโนโลยีสารสนเทศ มหาวิทยาลัยสงขลานครินทร์ (GPA: 3.43)\n• ปวส.: คอมพิวเตอร์/เทคโนโลยีสารสนเทศ วิทยาลัยเทคนิคหาดใหญ่ (GPA: 3.51)\n• ปวช.: ช่างคอมพิวเตอร์ วิทยาลัยเทคนิคหาดใหญ่ (GPA: 3.19)\n\nนฤดมมีพื้นฐานแข็งแกร่งทั้งด้านทฤษฎีไอทีและภาคปฏิบัติสายช่างครับ!";
     }
-    
+
     if (q.includes("skill") || q.includes("ทักษะ") || q.includes("เขียนโค้ด") || q.includes("ภาษา")) {
       return "ทักษะและความสามารถทางด้านเทคนิคของนฤดม:\n\n• Programming: TypeScript, JavaScript, PHP, Python\n• Frontend: Next.js, Tailwind CSS, React (Web app)\n• Mobile: React Native (Expo)\n• Database & Backend: MongoDB, Supabase\n• Tools & AI: Git/GitHub, Figma, นำ AI มาประยุกต์ช่วยเขียนโค้ดเพื่อความเร็วและแม่นยำ\n• Support & System: วิเคราะห์ระบบความต้องการระบบ, แก้ไขปัญหา Hardware & OS คอมพิวเตอร์เชิงลึก";
     }
-    
+
     if (q.includes("exp") || q.includes("ทำงาน") || q.includes("ฝึกงาน") || q.includes("vertex")) {
       return "ประสบการณ์ทำงานและการฝึกงานของนฤดม:\n\n1. IT Technician (Trainee) ที่ IT VERTEX (ก.พ. 2565 - เม.ย. 2567 | 2 ปี):\nดูแลแก้ปัญหา Hardware/Software เชิงลึก, วิเคราะห์บำรุงรักษาคอมพิวเตอร์และโน้ตบุ๊ก, ติดตั้ง OS และโปรแกรม\n\n2. IT Support (Trainee) ที่ IT VERTEX (พ.ค. 2565 - ก.ค. 2565 | 2 เดือน):\nให้การสนับสนุนซัพพอร์ตผู้ใช้งาน (On-site & Remote), ดูแลระบบคอมพิวเตอร์ทั่วไป";
     }
-    
+
+    if (q.includes("project") || q.includes("ผลงาน") || q.includes("โปรเจกต์") || q.includes("แอป")) {
+      return "โปรเจกต์หลักของนฤดมที่คุณสามารถเข้าไปดูโค้ดได้บน GitHub:\n\n• Project FoodNEXT : แอปสั่งอาหารจำลองพัฒนาด้วย Next.js และ JavaScript\n• IT VERTEX Trainee Portal (my-app): โปรเจกต์จัดการฐานข้อมูลที่กำลังจะทำและพัฒนาต่อยอดระหว่างการฝึกงานที่ IT VERTEX\n• SymbolToImages: โปรแกรมเครื่องมือย่อยใช้ภาษา Python จัดการแปลงสัญลักษณ์เป็นรูปภาพการวิเคราะห์ผล\n\nสามารถคลิกดูลิงก์ GitHub หรือรายละเอียดของแต่ละโปรเจกต์เพิ่มเติมในหัวข้อ 'โปรเจกต์ที่โดดเด่น' บนเว็บไซต์ได้เลยครับ!";
+    }
+
     if (q.includes("contact") || q.includes("ติดต่อ") || q.includes("เบอร์") || q.includes("เมล")) {
       return "ช่องทางการติดต่อของนฤดมครับ:\n\n• 📧 อีเมล: disasdrop@gmail.com\n• 📞 เบอร์โทรศัพท์: 091-030-4318\n• 📍 ที่อยู่: 3/2 อ.สะเดา จ.สงขลา\n\nยินดีติดต่อกลับผ่านทุกช่องทางเพื่อคุยรายละเอียดฝึกงาน/สัมภาษณ์งานครับ!";
     }
-    
+
     if (q.includes("start") || q.includes("เมื่อไหร่") || q.includes("ว่าง") || q.includes("ฝึกงานตำแหน่ง")) {
       return "ขณะนี้กำลังมองหาพื้นที่ฝึกงานในตำแหน่ง Programmer / Software Developer และพร้อมเริ่มงานได้ทันทีครับ! โดยยินดีทำงานร่วมกับทีม พัฒนาโปรเจกต์ของบริษัท และพร้อมเรียนรู้สิ่งใหม่ๆ เสมอครับ";
     }
@@ -122,28 +126,25 @@ export default function AIChatbot() {
             {messages.map((msg, index) => (
               <div
                 key={index}
-                className={`flex gap-3 max-w-[85%] ${
-                  msg.sender === "user" ? "ml-auto flex-row-reverse" : "mr-auto"
-                }`}
+                className={`flex gap-3 max-w-[85%] ${msg.sender === "user" ? "ml-auto flex-row-reverse" : "mr-auto"
+                  }`}
               >
                 {/* Avatar */}
                 <div
-                  className={`w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center text-xs ${
-                    msg.sender === "user"
+                  className={`w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center text-xs ${msg.sender === "user"
                       ? "bg-indigo-100 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400"
                       : "bg-slate-200 dark:bg-zinc-800 text-slate-600 dark:text-zinc-400"
-                  }`}
+                    }`}
                 >
                   {msg.sender === "user" ? <User size={14} /> : <Bot size={14} />}
                 </div>
 
                 {/* Bubble */}
                 <div
-                  className={`p-3.5 rounded-2xl text-sm whitespace-pre-line leading-relaxed shadow-sm ${
-                    msg.sender === "user"
+                  className={`p-3.5 rounded-2xl text-sm whitespace-pre-line leading-relaxed shadow-sm ${msg.sender === "user"
                       ? "bg-indigo-600 text-white rounded-tr-none"
                       : "bg-white dark:bg-zinc-800 text-slate-800 dark:text-zinc-200 rounded-tl-none border border-slate-200/50 dark:border-zinc-700/30"
-                  }`}
+                    }`}
                 >
                   {msg.text}
                 </div>

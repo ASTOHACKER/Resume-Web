@@ -14,7 +14,7 @@ export default function Terminal() {
   const [history, setHistory] = useState<HistoryItem[]>([
     {
       command: "welcome",
-      output: "พิมพ์ 'help' เพื่อดูคำสั่งทั้งหมดที่สามารถใช้งานได้ในการสอบถามข้อมูลของผม",
+      output: "พิมพ์ 'neofetch' หรือ 'help' เพื่อดูคำสั่งทั้งหมดที่สามารถใช้งานได้ในการสอบถามข้อมูลของผม",
     },
   ]);
   const [inputVal, setInputVal] = useState("");
@@ -30,53 +30,115 @@ export default function Terminal() {
     let output = "";
     const lowerCmd = cmd.toLowerCase();
 
-    switch (lowerCmd) {
-      case "help":
-        output = `คำสั่งที่ใช้งานได้:
+    if (lowerCmd.startsWith("cat ")) {
+      const target = lowerCmd.substring(4).trim();
+      if (target === "bio" || target === "about" || target === "readme") {
+        output = `# นฤดม โอกาศ (Software Developer)
+-------------------------------
+เป็นนักศึกษา IT ชั้นปีที่ 2 จาก ม.สงขลานครินทร์ (วิทยาศาสตร์)
+มีความสนใจในการเขียนโค้ด พัฒนาเว็บไซต์ด้วย TypeScript, Next.js, Supabase, MongoDB
+มีประสบการณ์ทำงานด้านเทคนิคคอมพิวเตอร์และซัพพอร์ตระบบจากไอที เวอร์เท็กซ์
+ชื่นชอบในการเรียนรู้เครื่องมือใหม่ ๆ และทำงานแก้ปัญหาร่วมกันในทีมอย่างสร้างสรรค์`;
+      } else {
+        output = `cat: '${target}': No such file or directory. Try 'cat bio' or 'cat readme'`;
+      }
+    } else {
+      switch (lowerCmd) {
+        case "help":
+          output = `คำสั่งที่ใช้งานได้:
+  neofetch    - แสดงโลโก้ ASCII และสเปกของนักพัฒนา
   about       - แสดงประวัติย่อของ นฤดม โอกาศ
+  cat bio     - อ่านรายละเอียดประวัติย่อแบบ Markdown
   skills      - แสดงทักษะความสามารถและเทคโนโลยีที่ถนัด
   education   - แสดงประวัติการศึกษา
   experience  - แสดงประวัติและหน้าที่ความรับผิดชอบช่วงฝึกงาน
+  projects    - แสดงรายการโปรเจกต์โดดเด่นและลิงก์ GitHub
+  socials     - แสดงช่องทางสังคมออนไลน์
   contact     - แสดงช่องทางการติดต่อด่วน
   theme       - สลับธีมหน้าจอเว็บ (Light/Dark Mode)
   clear       - ล้างหน้าจอคอลโซล
   help        - แสดงรายการคำสั่งทั้งหมด`;
-        break;
-      case "about":
-        output = "นฤดม โอกาศ (Software Developer) นักศึกษาไอทีชั้นปีที่ 2 คณะวิทยาศาสตร์ มหาวิทยาลัยสงขลานครินทร์ ผู้มีความสามารถในการเขียนโปรแกรม พัฒนาเว็บแอปพลิเคชัน และแก้ปัญหาระบบหลังบ้านได้ดี รวมถึงมีทักษะงานฮาร์ดแวร์เชิงเทคนิค";
-        break;
-      case "skills":
-        output = `ทักษะทางเทคนิค:
+          break;
+        case "neofetch":
+          const isMobileFetch = typeof window !== "undefined" && window.innerWidth < 640;
+          if (isMobileFetch) {
+            output = `
+  NARUDOM DEV CLI v2.0
+  -------------------
+  OS    : Next.js Portfolio v16
+  Host  : PSU OS (IT Student)
+  Kernel: React 19 + TypeScript
+  Shell : Web Interactive Shell
+  DE    : Tailwind CSS v4.0
+  CPU   : Narudom's Intelligent Core
+  RAM   : 16 GB TS / 8 GB MongoDB`;
+          } else {
+            output = `
+   ███╗   ██╗███████╗██╗  ██╗████████╗   visitor@narudom-dev
+   ████╗  ██║██╔════╝╚██╗██╔╝╚══██╔══╝   -------------------
+   ██╔██╗ ██║█████╗   ╚███╔╝    ██║      OS: Next.js Portfolio v16
+   ██║╚██╗██║██╔══╝   ██╔██╗    ██║      Host: Prince of Songkla University (IT)
+   ██║ ╚████║███████╗██╔╝ ██╗   ██║      Kernel: React 19 + TypeScript
+   ╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝   ╚═╝      Shell: Web Interactive Shell
+                                         DE: Tailwind CSS v4.0 (Glassmorphic)
+                                         WM: Framer Motion v12
+                                         CPU: Narudom's Intelligent Core
+                                         Memory: 16 GB TS / 8 GB MongoDB / Supabase`;
+          }
+          break;
+        case "about":
+          output = "นฤดม โอกาศ (Software Developer) นักศึกษาไอทีชั้นปีที่ 2 คณะวิทยาศาสตร์ มหาวิทยาลัยสงขลานครินทร์ ผู้มีความสามารถในการเขียนโปรแกรม พัฒนาเว็บแอปพลิเคชัน และแก้ปัญหาระบบหลังบ้านได้ดี รวมถึงมีทักษะงานฮาร์ดแวร์เชิงเทคนิค";
+          break;
+        case "skills":
+          output = `ทักษะทางเทคนิค:
   - Languages: TypeScript, JavaScript, PHP, Python
   - Frontend: Next.js, Tailwind CSS, React
   - Mobile: React Native (Expo)
   - Backend/Database: MongoDB, Supabase, Git
   - Specialities: AI for Dev, System Analysis, Diagnostics, Hardware Repair`;
-        break;
-      case "education":
-        output = `ประวัติการศึกษา:
+          break;
+        case "education":
+          output = `ประวัติการศึกษา:
   1. ปริญญาตรี (กำลังเรียน ปี 2): ม.สงขลานครินทร์ (IT) | GPA: 3.43
   2. ปวส. เทคโนโลยีสารสนเทศ: วิทยาลัยเทคนิคหาดใหญ่ | GPA: 3.51
   3. ปวช. ช่างคอมพิวเตอร์: วิทยาลัยเทคนิคหาดใหญ่ | GPA: 3.19`;
-        break;
-      case "experience":
-        output = `ประสบการณ์ฝึกงาน (IT VERTEX):
+          break;
+        case "experience":
+          output = `ประสบการณ์ฝึกงาน (IT VERTEX):
   - IT Support (Trainee): ซัพพอร์ตทั่วไป, ทั้งแบบ On-site และ Remote, ลงระบบ OS
   - IT Technician (Trainee): วิเคราะห์ ตรวจสภาพ ซ่อมแซม ปรับแต่งฮาร์ดแวร์โน้ตบุ๊กและคอมพิวเตอร์เชิงลึก (รวมระยะเวลา 2 ปี)`;
-        break;
-      case "contact":
-        output = "อีเมล: disasdrop@gmail.com | โทร: 091-030-4318 | ที่อยู่: สะเดา สงขลา | GitHub: github.com/ASTOHACKER";
-        break;
-      case "theme":
-        toggleTheme();
-        output = "สลับธีมหน้าจอ (Light/Dark Mode) เรียบร้อยแล้ว!";
-        break;
-      case "clear":
-        setHistory([]);
-        setInputVal("");
-        return;
-      default:
-        output = `คำสั่ง '${cmd}' ไม่รู้จัก. พิมพ์ 'help' เพื่อดูคำสั่งทั้งหมด`;
+          break;
+        case "projects":
+          output = `ผลงานพัฒนาที่โดดเด่น:
+  1. FoodNEXT (Next.js App)
+     - เว็บระบบสั่งอาหารและหน้าร้านสมัยใหม่
+     - GitHub: github.com/ASTOHACKER/ProjectVersion1xxx
+  2. IT VERTEX Trainee Portal (my-app)
+     - แอป Next.js สำหรับจัดการระบบฝึกงานและดูแลหลังบ้าน
+     - GitHub: github.com/ASTOHACKER/my-app
+  3. SymbolToImages (Python)
+     - โปรแกรมช่วยแปลงสัญลักษณ์เชิงเทคนิคออกมาเป็นรูปภาพ
+     - GitHub: github.com/ASTOHACKER/SymbolToImages`;
+          break;
+        case "socials":
+          output = `ช่องทางออนไลน์:
+  - GitHub   : https://github.com/ASTOHACKER
+  - Email    : disasdrop@gmail.com`;
+          break;
+        case "contact":
+          output = "อีเมล: disasdrop@gmail.com | โทร: 091-030-4318 | ที่อยู่: สะเดา สงขลา | GitHub: github.com/ASTOHACKER";
+          break;
+        case "theme":
+          toggleTheme();
+          output = "สลับธีมหน้าจอ (Light/Dark Mode) เรียบร้อยแล้ว!";
+          break;
+        case "clear":
+          setHistory([]);
+          setInputVal("");
+          return;
+        default:
+          output = `คำสั่ง '${cmd}' ไม่รู้จัก. พิมพ์ 'help' เพื่อดูคำสั่งทั้งหมด`;
+      }
     }
 
     setHistory((prev) => [...prev, { command: cmd, output }]);
@@ -95,8 +157,8 @@ export default function Terminal() {
     if (!ctx) return;
 
     const resizeCanvas = () => {
-      canvas.width = canvas.parentElement?.clientWidth || 800;
-      canvas.height = canvas.parentElement?.clientHeight || 380;
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
     };
     
     resizeCanvas();

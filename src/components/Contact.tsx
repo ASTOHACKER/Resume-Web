@@ -13,13 +13,20 @@ export default function Contact() {
     if (!formData.name || !formData.contactInfo || !formData.message) return;
 
     setIsSubmitting(true);
-    // Simulate API call
+    
+    // Prefill and open native email client (mailto)
+    const subject = `ติดต่อจากพอร์ตโฟลิโอ: คุณ ${formData.name}`;
+    const body = `สวัสดีครับ นฤดม\n\nมีผู้ติดต่อผ่านทางหน้าเว็บไซต์พอร์ตโฟลิโอของคุณ ดังนี้ครับ:\n\nชื่อผู้ติดต่อ: ${formData.name}\nช่องทางติดต่อกลับ: ${formData.contactInfo}\n\nข้อความ:\n${formData.message}\n\n---\nข้อความส่งจากระบบ Resume Web Portfolio ของคุณ`;
+    
+    window.location.href = `mailto:disasdrop@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // Show visual feedback on screen
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
       setFormData({ name: "", contactInfo: "", message: "" });
       setTimeout(() => setIsSubmitted(false), 5000);
-    }, 1200);
+    }, 800);
   };
 
   return (

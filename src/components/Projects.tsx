@@ -1,42 +1,126 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, FolderGit2, Star, Sparkles, Smartphone, Code2 } from "lucide-react";
+import ProjectDemoModal from "./ProjectDemoModal";
+
+interface ProjectDemoDetails {
+  screens: { name: string; desc: string }[];
+  architecture: string;
+  features: string[];
+}
+
+interface Project {
+  title: string;
+  type: string;
+  desc: string;
+  tech: string[];
+  github: string;
+  demo: string;
+  featured: boolean;
+  icon: React.ReactNode;
+  demoDetails: ProjectDemoDetails;
+}
 
 export default function Projects() {
-  const projects = [
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const projects: Project[] = [
     {
-      title: "ASTO-Shop (E-Commerce Web Application)",
-      type: "Full-Stack Web App",
-      desc: "ระบบร้านค้าออนไลน์แบบครบวงจร รองรับการเข้าสู่ระบบ, การเลือกซื้อสินค้าลงตะกร้าแบบ Real-time, ระบบคูปองส่วนลด และการชำระเงินจำลอง พร้อมแผงหลังบ้าน (Dashboard) สำหรับจัดการข้อมูลสต็อกสินค้า",
-      tech: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "MongoDB"],
-      github: "https://github.com/ASTOHACKER",
+      title: "Project FoodNEXT (ProjectVersion1xxx)",
+      type: "Next.js Web App",
+      desc: "เว็บแอปพลิเคชันระบบสั่งอาหารแบบโมเดิร์น พัฒนาด้วย Next.js และ JavaScript มีการจัดการระบบหน้าร้าน รายการเมนู และการคำนวณผลอย่างเป็นลำดับขั้นตอนชัดเจน",
+      tech: ["Next.js", "JavaScript", "Tailwind CSS", "MongoDB"],
+      github: "https://github.com/ASTOHACKER/ProjectVersion1xxx",
       demo: "#",
       featured: true,
       icon: <Code2 className="text-indigo-500" size={24} />,
+      demoDetails: {
+        screens: [
+          { name: "หน้าเมนู & บัตรเลือกรายการ (Menu & Cart)", desc: "แสดงรายการอาหารพร้อมฟิลเตอร์หมวดหมู่ มีระบบตะกร้าสินค้าสำหรับรวบรวมรายการและคำนวณราคารายเซกเมนต์" },
+          { name: "ระบบส่งออร์เดอร์ของลูกค้า (Ordering Flow)", desc: "เมื่อกดยืนยันออร์เดอร์ ระบบจะจำลองการส่งข้อมูลชุดคำสั่งไปยัง Local Database เพื่อนำมาประมวลผลการจัดเตรียมอาหาร" },
+          { name: "หน้าจัดการสต็อกหลังบ้าน (Kitchen Dashboard)", desc: "แสดงคำสั่งซื้อที่ค้างเตรียมแบบเรียลไทม์ สามารถกดอัปเดตสถานะของออร์เดอร์เป็น 'กำลังเตรียม' หรือ 'เสร็จสิ้น' ได้" }
+        ],
+        architecture: `[Client View: Next.js / Tailwind]
+     │
+     ▼ (HTTP Requests / state)
+[Order Management System]
+     │
+     ▼
+[Prerendered / Local State Stores]`,
+        features: [
+          "พัฒนาแบบ Responsive เต็มรูปแบบ เหมาะสำหรับลูกค้าสแกนเมนูผ่านมือถือ",
+          "มีระบบคำนวณภาษีมูลค่าเพิ่ม (VAT 7%) และ Service Charge อัตโนมัติ",
+          "จัดการสถานะออร์เดอร์อย่างเป็นขั้นตอน (Pending -> Preparing -> Completed)"
+        ]
+      }
     },
     {
-      title: "IT-Diagnostic Mobile (ระบบวิเคราะห์อาการเสียฮาร์ดแวร์)",
-      type: "Mobile Application",
-      desc: "แอปพลิเคชันบนมือถือที่พัฒนาเพื่อช่วยวิเคราะห์ ค้นหา และแก้ไขปัญหาฮาร์ดแวร์คอมพิวเตอร์และโน้ตบุ๊กเชิงลึก มีคลังความรู้การตรวจซ่อมและขั้นตอนบำรุงรักษาอุปกรณ์ไอทีแบบทีละขั้นตอน (Step-by-step)",
-      tech: ["React Native", "Expo", "TypeScript", "SQLite"],
-      github: "https://github.com/ASTOHACKER",
+      title: "IT VERTEX Trainee Portal (my-app)",
+      type: "Next.js & TypeScript",
+      desc: "โปรเจกต์ระบบหลังบ้านสำหรับงานไอทีฝึกงาน พัฒนาด้วย Next.js และ TypeScript เพื่อจดบันทึกประวัติ อัปเดตงานซ่อมบำรุงโน้ตบุ๊กคอมพิวเตอร์ และซัพพอร์ตระบบทั่วไป",
+      tech: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],
+      github: "https://github.com/ASTOHACKER/my-app",
       demo: "#",
-      featured: false,
+      featured: true,
       icon: <Smartphone className="text-emerald-500" size={24} />,
+      demoDetails: {
+        screens: [
+          { name: "สรุปยอดเคสประจำวัน (Dashboard Summary)", desc: "แสดงผลรวมปัญหาคอมพิวเตอร์ที่ได้รับการติดต่อเข้ามา จำนวนเคสที่แก้สำเร็จแล้ว และเคสที่อยู่ระหว่างดำเนินการซ่อมแซม" },
+          { name: "ระบบคลังเก็บประวัติซ่อมบำรุง (Maintenance Catalog)", desc: "บันทึกข้อมูลอาการเสียของเครื่อง วิธีแก้ไข อะไหล่ที่ถูกสับเปลี่ยน และเวลารับ-ส่งคืนเครื่องของพนักงาน" },
+          { name: "เครื่องมือวิเคราะห์ระดับแบตเตอรี่และระบบปฏิบัติการ (Diagnostics Helper)", desc: "โปรแกรมจำลองวิเคราะห์ข้อมูลสภาพเครื่องโน้ตบุ๊กเพื่อประเมินความสมบูรณ์และแนะนำแนวทางลง OS ปรับแต่งเครื่อง" }
+        ],
+        architecture: `[Client View: Next.js / TS] ──► [API Route Handler]
+                                      │
+                                      ▼
+                             [Supabase Database]
+                                      │
+                            (Realtime Sync/Auth)`,
+        features: [
+          "ออกแบบสำหรับการทำงานประสานงานกันของช่างซ่อมบำรุงและทีม Support",
+          "มีหน้ากรอกรายงานปัญหาด่วนเพื่อนำไปใช้งานบนอุปกรณ์พกพาขณะปฏิบัติงาน On-site",
+          "สถิติกรองข้อมูลวิเคราะห์แบรนด์อุปกรณ์ที่ส่งเคลม/ชำรุดมากที่สุด"
+        ]
+      }
     },
     {
-      title: "AI Code Buddy (ผู้ช่วยตรวจแก้บั๊กและจัดการ API)",
-      type: "AI Utility App",
-      desc: "เว็บแอปพลิเคชันที่นำ AI มาช่วยในการเขียนโค้ดและดีบั๊กบั๊กของระบบหลังบ้าน (เช่น ปัญหา Routing, URL Redirection หรือ API Integration) ช่วยลดเวลาในการค้นหาสาเหตุการผิดพลาดของระบบ",
-      tech: ["Next.js", "TypeScript", "Gemini API", "MongoDB", "Tailwind CSS"],
-      github: "https://github.com/ASTOHACKER",
+      title: "SymbolToImages",
+      type: "Python Utility",
+      desc: "โปรแกรมประยุกต์ย่อยพัฒนาด้วยภาษา Python สำหรับประมวลผลคำสั่งรหัสสัญลักษณ์เชิงเทคนิคเพื่อแปลงข้อมูลตัวอักษรออกมาแสดงผลเป็นรูปภาพกราฟิกอย่างง่าย",
+      tech: ["Python", "Image Generation"],
+      github: "https://github.com/ASTOHACKER/SymbolToImages",
       demo: "#",
       featured: false,
       icon: <Sparkles className="text-purple-500" size={24} />,
+      demoDetails: {
+        screens: [
+          { name: "ตัวรับข้อมูลรหัสสัญลักษณ์ (Input Console)", desc: "ช่องอินพุตเพื่อรับรหัสสัญลักษณ์ เช่น ตัวอักษรดัดแปลง หรือเครื่องหมายวงเล็บเชื่อมโยงโครงสร้างข้อมูล" },
+          { name: "ตัวแปรผลเป็นพิกเซลกราฟิก (Pixel Compiler)", desc: "คอมไพเลอร์ที่เขียนขึ้นด้วยภาษา Python ทำการอ่านรหัสอักษรทีละตัวแล้วแปลงเป็นอาร์เรย์พิกเซลวาดบน Canvas" },
+          { name: "เครื่องมือส่งออกรูปภาพ (Image Exporter)", desc: "แปลงกราฟิกในหน่วยความจำและบันทึกออกมาเป็นภาพนามสกุล .png หรือ .jpg อัตโนมัติ" }
+        ],
+        architecture: `[CLI / Graphical Interface]
+            │
+            ▼ (String Parser)
+     [Pixel Matrix Engine]
+            │
+            ▼ (Pillow / Image Draw)
+    [.png / .jpg Asset Output]`,
+        features: [
+          "ใช้งานง่ายด้วยชุดคำสั่งแบบเบา (Lightweight Scripting)",
+          "รองรับโครงสร้างรหัสแบบหลายบรรทัดเพื่อจัดตารางแสดงผลภาพความละเอียดตามตารางพิกเซล",
+          "ส่งออกภาพขนาดมาตรฐานสำหรับใช้จัดทำสื่อเทคนิคอย่างรวดเร็ว"
+        ]
+      }
     },
   ];
+
+  const handleOpenDemo = (e: React.MouseEvent, project: Project) => {
+    e.preventDefault();
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
 
   return (
     <section id="projects" className="py-20 bg-slate-50/50 dark:bg-zinc-950/20 print-container">
@@ -56,7 +140,7 @@ export default function Projects() {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 print-grid">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 print-grid">
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -64,11 +148,10 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`p-6 rounded-3xl bg-white dark:bg-zinc-900 border transition-all duration-300 flex flex-col justify-between print-card ${
-                project.featured
+              className={`p-6 rounded-3xl bg-white dark:bg-zinc-900 border transition-all duration-300 flex flex-col justify-between print-card ${project.featured
                   ? "border-indigo-500/30 dark:border-indigo-500/30 shadow-[0_0_30px_rgba(99,102,241,0.1)] dark:shadow-[0_0_30px_rgba(99,102,241,0.06)] hover:shadow-[0_0_40px_rgba(99,102,241,0.2)] dark:hover:shadow-[0_0_40px_rgba(99,102,241,0.15)]"
                   : "border-slate-200/60 dark:border-zinc-800/80 shadow-sm hover:shadow-[0_0_30px_rgba(99,102,241,0.08)] dark:hover:shadow-[0_0_30px_rgba(99,102,241,0.05)] hover:border-indigo-500/20"
-              }`}
+                }`}
             >
               <div className="space-y-4">
                 {/* Header */}
@@ -117,19 +200,26 @@ export default function Projects() {
                     <FolderGit2 size={14} />
                     ดูโค้ดบน GitHub
                   </a>
-                  <a
-                    href={project.demo}
-                    className="flex items-center gap-1 text-xs text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300 font-semibold transition-colors"
+                  <button
+                    onClick={(e) => handleOpenDemo(e, project)}
+                    className="flex items-center gap-1 text-xs text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300 font-semibold transition-colors cursor-pointer"
                   >
                     เดโมตัวอย่าง
                     <ExternalLink size={12} />
-                  </a>
+                  </button>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
+
+      {/* Render interactive project preview modal */}
+      <ProjectDemoModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        project={selectedProject}
+      />
     </section>
   );
 }

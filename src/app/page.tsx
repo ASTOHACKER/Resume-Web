@@ -9,6 +9,7 @@ import AIChatbot from "@/components/AIChatbot";
 import Terminal from "@/components/Terminal";
 import Contact from "@/components/Contact";
 import SpotlightBg from "@/components/SpotlightBg";
+import FloatingActions from "@/components/FloatingActions";
 import { Heart } from "lucide-react";
 
 export default function Home() {
@@ -16,6 +17,9 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       {/* Spotlight mouse cursor background effect */}
       <SpotlightBg />
+
+      {/* Floating Speed Dial actions */}
+      <FloatingActions />
 
       {/* Navigation */}
       <Navbar />
