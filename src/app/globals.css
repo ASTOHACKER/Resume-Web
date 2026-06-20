@@ -24,6 +24,19 @@
   --color-accent: var(--accent);
   --font-sans: var(--font-outfit), var(--font-prompt), sans-serif;
   --font-display: var(--font-prompt), sans-serif;
+  
+  --animate-gradient-shift: gradient-shift 6s ease infinite;
+  --animate-float: float 5s ease-in-out infinite;
+  --animate-spin-slow: spin 12s linear infinite;
+
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
 }
 
 html {

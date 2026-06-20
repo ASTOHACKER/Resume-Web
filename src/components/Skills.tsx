@@ -72,7 +72,7 @@ export default function Skills() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-slate-200/60 dark:border-zinc-800/80 shadow-sm print-card"
+              className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-slate-200/60 dark:border-zinc-800/80 shadow-sm hover:shadow-[0_0_30px_rgba(99,102,241,0.12)] dark:hover:shadow-[0_0_30px_rgba(99,102,241,0.1)] hover:border-indigo-500/20 transition-all duration-300 print-card"
             >
               {/* Category Title */}
               <div className="flex items-center gap-2 mb-6 pb-2 border-b border-slate-100 dark:border-zinc-800/60">
@@ -96,13 +96,13 @@ export default function Skills() {
                     </div>
 
                     {/* Progress Bar (hidden in printing for clean print look) */}
-                    <div className="w-full h-2 bg-slate-100 dark:bg-zinc-800 rounded-full overflow-hidden no-print">
+                    <div className="w-full h-2 bg-slate-100 dark:bg-zinc-800/50 rounded-full overflow-hidden no-print">
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.percentage}%` }}
                         viewport={{ once: true }}
                         transition={{ duration: 1, delay: sIdx * 0.05 }}
-                        className="h-full bg-indigo-600 dark:bg-indigo-500 rounded-full"
+                        className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-400 rounded-full"
                       />
                     </div>
                   </div>

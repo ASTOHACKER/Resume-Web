@@ -96,7 +96,7 @@ export default function Contact() {
 
           {/* Form Column */}
           <div className="md:col-span-3 h-full no-print">
-            <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 shadow-xl relative overflow-hidden h-full flex flex-col justify-center">
+            <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-slate-200/60 dark:border-zinc-800/80 shadow-xl hover:shadow-[0_0_40px_rgba(99,102,241,0.12)] dark:hover:shadow-[0_0_40px_rgba(99,102,241,0.08)] hover:border-indigo-500/20 transition-all duration-300 relative overflow-hidden h-full flex flex-col justify-center">
               {isSubmitted ? (
                 <div className="flex flex-col items-center justify-center text-center py-12 space-y-4">
                   <div className="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center animate-bounce">

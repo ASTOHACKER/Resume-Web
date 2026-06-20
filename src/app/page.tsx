@@ -1,16 +1,22 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import Projects from "@/components/Projects";
 import Education from "@/components/Education";
 import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
 import AIChatbot from "@/components/AIChatbot";
+import Terminal from "@/components/Terminal";
 import Contact from "@/components/Contact";
+import SpotlightBg from "@/components/SpotlightBg";
 import { Heart } from "lucide-react";
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
+      {/* Spotlight mouse cursor background effect */}
+      <SpotlightBg />
+
       {/* Navigation */}
       <Navbar />
 
@@ -24,6 +30,11 @@ export default function Home() {
 
         {/* About Section */}
         <About />
+
+        <div className="print-divider" />
+
+        {/* Projects Showcase */}
+        <Projects />
 
         <div className="print-divider" />
 
@@ -47,6 +58,11 @@ export default function Home() {
 
         <div className="print-divider" />
 
+        {/* CLI Terminal (Web-only) */}
+        <Terminal />
+
+        <div className="print-divider" />
+
         {/* Contact Section */}
         <Contact />
       </main>
@@ -63,3 +79,4 @@ export default function Home() {
     </div>
   );
 }
+

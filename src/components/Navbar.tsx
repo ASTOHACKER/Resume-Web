@@ -27,6 +27,7 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "เกี่ยวกับฉัน", href: "#about" },
+    { name: "โปรเจกต์", href: "#projects" },
     { name: "การศึกษา", href: "#education" },
     { name: "ประสบการณ์", href: "#experience" },
     { name: "ทักษะ", href: "#skills" },
