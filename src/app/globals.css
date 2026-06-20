@@ -1,26 +1,139 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #09090b;
+  --foreground: #f4f4f5;
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --accent: #10b981;
 }
 
-@theme inline {
+.light {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --accent: #059669;
+}
+
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-outfit), var(--font-prompt), sans-serif;
+  --font-display: var(--font-prompt), sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+  background: rgba(18, 18, 24, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.light .glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Print Layout Settings */
+@media print {
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 12px !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Hide interactable elements */
+  .no-print,
+  nav,
+  button,
+  #chatbot-section,
+  #contact-form,
+  .theme-toggle-btn {
+    display: none !important;
+  }
+
+  /* Reset container widths and margins */
+  .print-container {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* Grid layout to flex column for print formatting */
+  .print-grid {
+    display: block !important;
+  }
+
+  /* Clean style for experience and education items */
+  .print-card {
+    border: none !important;
+    background: transparent !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    padding: 10px 0 !important;
+    margin-bottom: 10px !important;
+    page-break-inside: avoid !important;
+  }
+
+  .print-divider {
+    border-bottom: 1px solid #e2e8f0 !important;
+    margin: 15px 0 !important;
+  }
+
+  /* Prevent text wrapping issues */
+  h1, h2, h3, h4, h5, h6 {
+    color: #000000 !important;
+    page-break-after: avoid;
+  }
+
+  p, li {
+    color: #334155 !important;
+  }
+
+  .page-break {
+    page-break-before: always !important;
+  }
+}
+
