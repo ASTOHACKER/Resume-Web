@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import FadeInView from "@/components/FadeInView";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Projects from "@/components/Projects";
@@ -27,48 +28,66 @@ export default function Home() {
       {/* Main Resume Content */}
       <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 print-container">
         {/* Hero Section */}
-        <Hero />
+        <FadeInView>
+          <Hero />
+        </FadeInView>
         
         {/* Divider for print layout spacing */}
         <div className="print-divider" />
 
         {/* About Section */}
-        <About />
+        <FadeInView>
+          <About />
+        </FadeInView>
 
         <div className="print-divider" />
 
         {/* Projects Showcase */}
-        <Projects />
+        <FadeInView>
+          <Projects />
+        </FadeInView>
 
         <div className="print-divider" />
 
         {/* Education Section */}
-        <Education />
+        <FadeInView>
+          <Education />
+        </FadeInView>
 
         <div className="print-divider" />
 
         {/* Experience Section */}
-        <Experience />
+        <FadeInView>
+          <Experience />
+        </FadeInView>
 
         <div className="print-divider" />
 
         {/* Skills Section */}
-        <Skills />
+        <FadeInView>
+          <Skills />
+        </FadeInView>
 
         <div className="print-divider" />
 
         {/* Interactive AI Chatbot (Web-only) */}
-        <AIChatbot />
+        <FadeInView>
+          <AIChatbot />
+        </FadeInView>
 
         <div className="print-divider" />
 
         {/* CLI Terminal (Web-only) */}
-        <Terminal />
+        <FadeInView>
+          <Terminal />
+        </FadeInView>
 
         <div className="print-divider" />
 
         {/* Contact Section */}
-        <Contact />
+        <FadeInView>
+          <Contact />
+        </FadeInView>
       </main>
 
       {/* Footer */}

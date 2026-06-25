@@ -68,26 +68,22 @@ export default function About() {
             </h4>
             <div className="grid grid-cols-1 gap-4">
               {highlights.map((item, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="flex gap-4 p-4 rounded-xl bg-white dark:bg-zinc-900 border border-slate-200/60 dark:border-zinc-800/80 shadow-sm print-card"
+                  className="flex gap-4 p-4 rounded-xl bg-white dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 shadow-sm print-card transition-all hover:border-indigo-500/20"
                 >
                   <div className="flex-shrink-0 p-2 rounded-lg bg-slate-50 dark:bg-zinc-800/50 h-fit">
                     {item.icon}
                   </div>
                   <div>
-                    <h5 className="text-sm font-semibold text-slate-800 dark:text-zinc-200">
+                    <h5 className="text-sm font-medium text-slate-800 dark:text-zinc-200">
                       {item.title}
                     </h5>
-                    <p className="mt-1 text-xs text-slate-500 dark:text-zinc-400 leading-relaxed">
+                    <p className="mt-1 text-xs text-slate-600 dark:text-zinc-400 leading-relaxed font-normal">
                       {item.desc}
                     </p>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>

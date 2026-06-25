@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useTheme } from "./ThemeProvider";
 import { Sun, Moon, Menu, X, Code } from "lucide-react";
 
@@ -9,19 +9,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const navLinks = [
+  const navLinks = useMemo(() => [
     { name: "เกี่ยวกับฉัน", href: "#about" },
     { name: "โปรเจกต์", href: "#projects" },
     { name: "การศึกษา", href: "#education" },
@@ -29,7 +17,33 @@ export default function Navbar() {
     { name: "ทักษะ", href: "#skills" },
     { name: "ผู้ช่วย AI", href: "#ai-assistant" },
     { name: "ติดต่อ", href: "#contact" },
-  ];
+  ], []);
+
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+
+      const sections = navLinks.map((link) => link.href.substring(1));
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top >= 0 && rect.top <= 300) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [navLinks]);
 
   return (
     <nav
@@ -42,13 +56,18 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-12">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold">
-              <Code size={18} />
+          <div className="flex items-center gap-2 group cursor-pointer">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-emerald-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/20 transition-transform duration-300 group-hover:scale-105">
+              <Code size={20} className="text-white" />
             </div>
-            <span className="font-display font-semibold text-lg tracking-wider text-slate-900 dark:text-zinc-50">
-              NARUDOM.<span className="text-indigo-500">DEV</span>
-            </span>
+            <div className="flex flex-col">
+              <span className="font-display font-bold text-lg tracking-tight text-slate-900 dark:text-zinc-50">
+                NARUDOM
+              </span>
+              <span className="text-[10px] font-medium tracking-[0.2em] text-indigo-500 uppercase">
+                Portfolio
+              </span>
+            </div>
           </div>
 
           {/* Desktop Nav Links */}
@@ -57,7 +76,11 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-slate-600 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400 transition-colors duration-200"
+                className={`text-sm font-medium transition-colors duration-200 ${
+                  activeSection === link.href.substring(1)
+                    ? "text-indigo-600 dark:text-indigo-400"
+                    : "text-slate-600 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400"
+                }`}
               >
                 {link.name}
               </a>

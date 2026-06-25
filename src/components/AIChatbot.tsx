@@ -33,31 +33,34 @@ export default function AIChatbot() {
   const getBotResponse = (query: string): string => {
     const q = query.toLowerCase();
 
+    // 1. Core Information
     if (q.includes("edu") || q.includes("ศึกษา") || q.includes("เรียน")) {
-      return "ประวัติการศึกษาของนฤดม:\n\n• ปริญญาตรี (กำลังศึกษาปี 2): คณะวิทยาศาสตร์ สาขาเทคโนโลยีสารสนเทศ มหาวิทยาลัยสงขลานครินทร์ (GPA: 3.43)\n• ปวส.: คอมพิวเตอร์/เทคโนโลยีสารสนเทศ วิทยาลัยเทคนิคหาดใหญ่ (GPA: 3.51)\n• ปวช.: ช่างคอมพิวเตอร์ วิทยาลัยเทคนิคหาดใหญ่ (GPA: 3.19)\n\nนฤดมมีพื้นฐานแข็งแกร่งทั้งด้านทฤษฎีไอทีและภาคปฏิบัติสายช่างครับ!";
+      return "ประวัติการศึกษาของนฤดม:\n\n• ปริญญาตรี (ปี 2): คณะวิทยาศาสตร์ สาขาเทคโนโลยีสารสนเทศ มหาวิทยาลัยสงขลานครินทร์ (GPA: 3.43)\n• ปวส.: คอมพิวเตอร์/เทคโนโลยีสารสนเทศ วิทยาลัยเทคนิคหาดใหญ่ (GPA: 3.51)\n• ปวช.: ช่างคอมพิวเตอร์ วิทยาลัยเทคนิคหาดใหญ่ (GPA: 3.19)";
     }
 
-    if (q.includes("skill") || q.includes("ทักษะ") || q.includes("เขียนโค้ด") || q.includes("ภาษา")) {
-      return "ทักษะและความสามารถทางด้านเทคนิคของนฤดม:\n\n• Programming: TypeScript, JavaScript, PHP, Python\n• Frontend: Next.js, Tailwind CSS, React (Web app)\n• Mobile: React Native (Expo)\n• Database & Backend: MongoDB, Supabase\n• Tools & AI: Git/GitHub, Figma, นำ AI มาประยุกต์ช่วยเขียนโค้ดเพื่อความเร็วและแม่นยำ\n• Support & System: วิเคราะห์ระบบความต้องการระบบ, แก้ไขปัญหา Hardware & OS คอมพิวเตอร์เชิงลึก";
+    if (q.includes("skill") || q.includes("ทักษะ") || q.includes("โค้ด")) {
+      return "Technical Toolkit:\n\n• Frontend: Next.js 16 (App Router), React 19, Tailwind CSS v4, Framer Motion\n• Backend/DB: MongoDB, Supabase\n• Languages: TypeScript, Python, PHP\n• Ecosystem: Git, Figma, AI-assisted coding (Hermes/Cline)";
     }
 
-    if (q.includes("exp") || q.includes("ทำงาน") || q.includes("ฝึกงาน") || q.includes("vertex")) {
-      return "ประสบการณ์ทำงานและการฝึกงานของนฤดม:\n\n1. IT Technician (Trainee) ที่ IT VERTEX (ก.พ. 2565 - เม.ย. 2567 | 2 ปี):\nดูแลแก้ปัญหา Hardware/Software เชิงลึก, วิเคราะห์บำรุงรักษาคอมพิวเตอร์และโน้ตบุ๊ก, ติดตั้ง OS และโปรแกรม\n\n2. IT Support (Trainee) ที่ IT VERTEX (พ.ค. 2565 - ก.ค. 2565 | 2 เดือน):\nให้การสนับสนุนซัพพอร์ตผู้ใช้งาน (On-site & Remote), ดูแลระบบคอมพิวเตอร์ทั่วไป";
+    // 2. Interactive/Proactive
+    if (q.includes("ทำไม") || q.includes("จุดเด่น") || q.includes("ทำไมต้องรับ")) {
+      return "ทำไมต้องร่วมงานกับนฤดม?\n\n1. Technical & Practical: ปูพื้นฐานจากช่างเทคนิคมาสู่ Developer ทำให้เข้าใจทั้ง Hardware/Software เชิงลึก\n2. AI-Native Workflow: เชี่ยวชาญการใช้ AI Agent เพื่อเร่งสปีดการพัฒนา (เช่นโปรเจกต์นี้)\n3. Growth Mindset: พัฒนาและเรียนรู้ด้วยตนเองอย่างสม่ำเสมอ (Self-taught)";
     }
 
-    if (q.includes("project") || q.includes("ผลงาน") || q.includes("โปรเจกต์") || q.includes("แอป")) {
-      return "โปรเจกต์หลักของนฤดมที่คุณสามารถเข้าไปดูโค้ดได้บน GitHub:\n\n• Project FoodNEXT : แอปสั่งอาหารจำลองพัฒนาด้วย Next.js และ JavaScript\n• IT VERTEX Trainee Portal (my-app): โปรเจกต์จัดการฐานข้อมูลที่กำลังจะทำและพัฒนาต่อยอดระหว่างการฝึกงานที่ IT VERTEX\n• SymbolToImages: โปรแกรมเครื่องมือย่อยใช้ภาษา Python จัดการแปลงสัญลักษณ์เป็นรูปภาพการวิเคราะห์ผล\n\nสามารถคลิกดูลิงก์ GitHub หรือรายละเอียดของแต่ละโปรเจกต์เพิ่มเติมในหัวข้อ 'โปรเจกต์ที่โดดเด่น' บนเว็บไซต์ได้เลยครับ!";
+    if (q.includes("project") || q.includes("ผลงาน")) {
+      return "โปรเจกต์ที่โดดเด่น:\n\n• Resume Web (ตัวที่คุณกำลังคุยอยู่): Next.js 16 + React 19 + Framer Motion (Glassmorphism UI)\n• FoodNEXT: แอปสั่งอาหารจำลอง\n• IT VERTEX Portal: ระบบจัดการฐานข้อมูล\n\nสามารถดู Source Code ทั้งหมดได้ที่ GitHub: ASTOHACKER";
     }
 
-    if (q.includes("contact") || q.includes("ติดต่อ") || q.includes("เบอร์") || q.includes("เมล")) {
-      return "ช่องทางการติดต่อของนฤดมครับ:\n\n• 📧 อีเมล: disasdrop@gmail.com\n• 📞 เบอร์โทรศัพท์: 091-030-4318\n• 📍 ที่อยู่: 3/2 อ.สะเดา จ.สงขลา\n\nยินดีติดต่อกลับผ่านทุกช่องทางเพื่อคุยรายละเอียดฝึกงาน/สัมภาษณ์งานครับ!";
+    // 3. Contact/Status
+    if (q.includes("contact") || q.includes("ติดต่อ")) {
+      return "ช่องทางการติดต่อ:\n\n• 📧 disasdrop@gmail.com\n• 📞 091-030-4318\n• 🔗 GitHub: ASTOHACKER";
     }
 
-    if (q.includes("start") || q.includes("เมื่อไหร่") || q.includes("ว่าง") || q.includes("ฝึกงานตำแหน่ง")) {
-      return "ขณะนี้กำลังมองหาพื้นที่ฝึกงานในตำแหน่ง Programmer / Software Developer และพร้อมเริ่มงานได้ทันทีครับ! โดยยินดีทำงานร่วมกับทีม พัฒนาโปรเจกต์ของบริษัท และพร้อมเรียนรู้สิ่งใหม่ๆ เสมอครับ";
+    if (q.includes("เริ่ม") || q.includes("ว่าง")) {
+      return "พร้อมเริ่มงาน/ฝึกงานได้ทันทีครับ! สามารถนัดสัมภาษณ์ได้ผ่านอีเมลหรือเบอร์โทรศัพท์ที่ให้ไว้ได้เลยครับ";
     }
 
-    return "ขออภัยครับ ผมอาจจะยังไม่เข้าใจคำถามนี้ทั้งหมด แต่คุณสามารถคลิกเลือกหัวข้อที่สนใจถามเกี่ยวกับ นฤดม (การศึกษา, ทักษะ, ประสบการณ์, ติดต่อ) ได้จากปุ่มแนะนำด้านล่างเลยครับ! หรือส่งอีเมลมาหาได้โดยตรงที่ disasdrop@gmail.com";
+    return "อยากรู้อะไรเพิ่มเติมเกี่ยวกับนฤดมไหมครับ? ลองถามเกี่ยวกับ 'ผลงาน', 'จุดเด่น', หรือ 'ทักษะ' ได้เลยครับ";
   };
 
   const handleSendMessage = (text: string) => {

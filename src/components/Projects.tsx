@@ -148,41 +148,45 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`p-6 rounded-3xl bg-white dark:bg-zinc-900 border transition-all duration-300 flex flex-col justify-between print-card ${project.featured
-                  ? "border-indigo-500/30 dark:border-indigo-500/30 shadow-[0_0_30px_rgba(99,102,241,0.1)] dark:shadow-[0_0_30px_rgba(99,102,241,0.06)] hover:shadow-[0_0_40px_rgba(99,102,241,0.2)] dark:hover:shadow-[0_0_40px_rgba(99,102,241,0.15)]"
-                  : "border-slate-200/60 dark:border-zinc-800/80 shadow-sm hover:shadow-[0_0_30px_rgba(99,102,241,0.08)] dark:hover:shadow-[0_0_30px_rgba(99,102,241,0.05)] hover:border-indigo-500/20"
-                }`}
+              className={`group relative p-6 rounded-3xl bg-white dark:bg-zinc-900 border transition-all duration-300 flex flex-col justify-between print-card overflow-hidden ${
+                project.featured
+                  ? "border-indigo-500/30 dark:border-indigo-500/30 shadow-[0_8px_30px_rgb(99,102,241,0.1)] dark:shadow-[0_8px_30px_rgb(99,102,241,0.05)] hover:-translate-y-2"
+                  : "border-slate-200 dark:border-zinc-800 shadow-sm hover:shadow-xl hover:border-indigo-500/20 hover:-translate-y-2"
+              }`}
             >
-              <div className="space-y-4">
+              {/* Background Glow Effect */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+              <div className="space-y-4 relative z-10">
                 {/* Header */}
                 <div className="flex items-center justify-between">
-                  <div className="p-2 rounded-xl bg-slate-50 dark:bg-zinc-800/60 border border-slate-100 dark:border-zinc-850">
-                    {project.icon}
-                  </div>
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-500/10 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-400">
-                    {project.type}
-                  </span>
+                  <div className="p-3 rounded-2xl bg-white dark:bg-zinc-950 border border-slate-100 dark:border-zinc-800 shadow-sm">
+                      {project.icon}
+                    </div>
+                    <span className="px-3 py-1 rounded-full text-[10px] font-medium bg-slate-100 text-slate-600 dark:bg-zinc-800 dark:text-zinc-400">
+                      {project.type}
+                    </span>
                 </div>
 
                 {/* Info */}
-                <div className="space-y-1.5">
-                  <h3 className="text-base font-bold text-slate-800 dark:text-zinc-150 leading-snug">
+                <div className="space-y-2">
+                  <h3 className="text-lg font-medium text-slate-800 dark:text-zinc-200 leading-tight">
                     {project.title}
                   </h3>
-                  <p className="text-xs text-slate-500 dark:text-zinc-400 leading-relaxed font-light">
+                  <p className="text-sm text-slate-600 dark:text-zinc-400 leading-relaxed font-normal line-clamp-3">
                     {project.desc}
                   </p>
                 </div>
               </div>
 
               {/* Footer details */}
-              <div className="space-y-4 mt-6">
+              <div className="space-y-4 mt-6 relative z-10">
                 {/* Tech Tags */}
-                <div className="flex flex-wrap gap-1">
+                <div className="flex flex-wrap gap-1.5">
                   {project.tech.map((tag, tIdx) => (
                     <span
                       key={tIdx}
-                      className="px-2 py-0.5 bg-slate-50 text-slate-500 dark:bg-zinc-800/40 dark:text-zinc-400 text-[10px] font-medium rounded border border-slate-100 dark:border-zinc-800/50"
+                      className="px-2.5 py-1 bg-slate-50 text-slate-500 dark:bg-zinc-800/50 dark:text-zinc-400 text-[10px] font-medium rounded-md border border-slate-100 dark:border-zinc-800"
                     >
                       {tag}
                     </span>
@@ -190,22 +194,22 @@ export default function Projects() {
                 </div>
 
                 {/* Action Links */}
-                <div className="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-zinc-800/50 no-print">
+                <div className="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-zinc-800 no-print">
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-1.5 text-xs text-slate-500 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400 font-semibold transition-colors"
+                    className="flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-indigo-600 dark:text-zinc-500 dark:hover:text-indigo-400 transition-colors"
                   >
-                    <FolderGit2 size={14} />
-                    ดูโค้ดบน GitHub
+                    <FolderGit2 size={16} />
+                    Code
                   </a>
                   <button
                     onClick={(e) => handleOpenDemo(e, project)}
-                    className="flex items-center gap-1 text-xs text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300 font-semibold transition-colors cursor-pointer"
+                    className="flex items-center gap-2 text-xs font-semibold text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 transition-colors cursor-pointer"
                   >
-                    เดโมตัวอย่าง
-                    <ExternalLink size={12} />
+                    Details
+                    <ExternalLink size={14} />
                   </button>
                 </div>
               </div>
