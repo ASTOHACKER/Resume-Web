@@ -1,0 +1,15 @@
+{
+  "palette": {
+    "background": "#faf9f6",
+    "foreground": "#1a1a1a",
+    "primary": "#2563eb",
+    "accent": "#059669"
+  },
+  "typography": {
+    "fontSans": "Outfit, Prompt, sans-serif",
+    "fontDisplay": "Prompt, sans-serif"
+  },
+  "radii": {
+    "none": "0px"
+  }
+}

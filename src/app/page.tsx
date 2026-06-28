@@ -26,68 +26,33 @@ export default function Home() {
       <Navbar />
 
       {/* Main Resume Content */}
-      <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 print-container">
+      <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 section-spacing print-container">
         {/* Hero Section */}
-        <FadeInView>
-          <Hero />
-        </FadeInView>
+        <Hero />
         
-        {/* Divider for print layout spacing */}
-        <div className="print-divider" />
-
         {/* About Section */}
-        <FadeInView>
-          <About />
-        </FadeInView>
+        <About />
 
-        <div className="print-divider" />
+        {/* Projects Showcase - Editorial Layout */}
+        <Projects />
 
-        {/* Projects Showcase */}
-        <FadeInView>
-          <Projects />
-        </FadeInView>
-
-        <div className="print-divider" />
-
-        {/* Education Section */}
-        <FadeInView>
+        {/* Education & Experience */}
+        <div className="grid md:grid-cols-2 gap-16">
           <Education />
-        </FadeInView>
-
-        <div className="print-divider" />
-
-        {/* Experience Section */}
-        <FadeInView>
           <Experience />
-        </FadeInView>
+        </div>
 
-        <div className="print-divider" />
+        {/* Skills */}
+        <Skills />
 
-        {/* Skills Section */}
-        <FadeInView>
-          <Skills />
-        </FadeInView>
-
-        <div className="print-divider" />
-
-        {/* Interactive AI Chatbot (Web-only) */}
-        <FadeInView>
-          <AIChatbot />
-        </FadeInView>
-
-        <div className="print-divider" />
-
-        {/* CLI Terminal (Web-only) */}
-        <FadeInView>
-          <Terminal />
-        </FadeInView>
-
-        <div className="print-divider" />
+        {/* Interactive Sections (Hidden on Print) */}
+        <div className="no-print space-y-16">
+            <AIChatbot />
+            <Terminal />
+        </div>
 
         {/* Contact Section */}
-        <FadeInView>
-          <Contact />
-        </FadeInView>
+        <Contact />
       </main>
 
       {/* Footer */}

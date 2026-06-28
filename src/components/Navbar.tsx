@@ -57,30 +57,26 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-12">
           {/* Logo */}
           <div className="flex items-center gap-2 group cursor-pointer">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-emerald-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/20 transition-transform duration-300 group-hover:scale-105">
-              <Code size={20} className="text-white" />
+            <div className="w-10 h-10 border-2 border-foreground flex items-center justify-center rotate-3 hover:rotate-0 transition-transform duration-300">
+              <span className="font-display font-black text-lg">N</span>
             </div>
             <div className="flex flex-col">
-              <span className="font-display font-bold text-lg tracking-tight text-slate-900 dark:text-zinc-50">
+              <span className="font-display font-bold text-lg tracking-tighter text-foreground">
                 NARUDOM
               </span>
-              <span className="text-[10px] font-medium tracking-[0.2em] text-indigo-500 uppercase">
-                Portfolio
+              <span className="text-[9px] font-medium tracking-[0.2em] uppercase opacity-70">
+                Studio
               </span>
             </div>
           </div>
 
-          {/* Desktop Nav Links */}
-          <div className="hidden md:flex items-center gap-6">
+          {/* Desktop Nav Links - Centered & Minimal */}
+          <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className={`text-sm font-medium transition-colors duration-200 ${
-                  activeSection === link.href.substring(1)
-                    ? "text-indigo-600 dark:text-indigo-400"
-                    : "text-slate-600 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400"
-                }`}
+                className="text-[11px] uppercase tracking-widest font-medium text-foreground hover:opacity-50 transition-opacity"
               >
                 {link.name}
               </a>
