@@ -2,6 +2,8 @@
 
 import React from "react";
 
+import Marginalia from "./Marginalia";
+
 export default function Education() {
   const educationList = [
     {
@@ -25,7 +27,9 @@ export default function Education() {
   ];
 
   return (
-    <section id="education" className="section-spacing print-container">
+// 3. ปรับ Education.tsx ให้มี Marginalia
+    <section id="education" className="section-spacing print-container relative">
+      <Marginalia text="// academic archive" />
       <div className="max-w-5xl mx-auto px-4">
         <h2 className="text-xs uppercase tracking-[0.2em] text-slate-500 dark:text-zinc-500 mb-12 border-b border-zinc-200 dark:border-zinc-800 pb-4">
           Education // Academic Archive

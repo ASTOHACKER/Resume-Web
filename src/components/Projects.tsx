@@ -9,6 +9,8 @@ interface Project {
   github: string;
 }
 
+import Marginalia from "./Marginalia";
+
 export default function Projects() {
   const projects: Project[] = [
     {
@@ -32,7 +34,8 @@ export default function Projects() {
   ];
 
   return (
-    <section id="projects" className="section-spacing print-container">
+    <section id="projects" className="section-spacing print-container relative">
+      <Marginalia text="// selected works" />
       <div className="max-w-5xl mx-auto px-4">
         <h2 className="text-xs uppercase tracking-[0.2em] text-slate-500 dark:text-zinc-500 mb-20 border-b border-zinc-200 dark:border-zinc-800 pb-4">
           Selected Works // Editorial Archive
@@ -50,7 +53,7 @@ export default function Projects() {
                 {/* Content */}
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-3xl font-medium tracking-tight text-foreground">
+                    <h3 className="text-3xl font-medium tracking-tighter text-foreground">
                       {project.title} 
                       <span className="text-zinc-400 dark:text-zinc-600 font-light">— {project.type}</span>
                     </h3>
