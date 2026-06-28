@@ -69,90 +69,34 @@ export default function Skills() {
     : skillCategories.filter((cat) => cat.id === filter);
 
   return (
-    <section id="skills" className="py-20 print-container">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
-          <div className="text-center md:text-left">
-            <h2 className="text-3xl font-display font-bold tracking-tight text-slate-900 dark:text-zinc-50 border-l-4 border-indigo-600 pl-4 inline-block">
-              ทักษะความสามารถ
-            </h2>
-            <p className="mt-2 text-sm text-slate-500 dark:text-zinc-400 font-light">
-              ความชำนาญทางเทคนิค ซอฟต์แวร์ และงานซัพพอร์ต
-            </p>
-          </div>
+    <section id="skills" className="section-spacing print-container">
+      <div className="max-w-5xl mx-auto px-4">
+        <h2 className="text-xs uppercase tracking-[0.2em] text-slate-500 dark:text-zinc-500 mb-20 border-b border-zinc-200 dark:border-zinc-800 pb-4">
+          Technical Archive // Skills & Proficiency
+        </h2>
 
-          {/* Filter options (Hidden on print) */}
-          <div className="w-full md:w-auto overflow-x-auto no-print scrollbar-none flex items-center justify-start md:justify-center bg-slate-100/60 dark:bg-zinc-900/60 p-1.5 rounded-xl border border-slate-200/50 dark:border-zinc-800/40 select-none">
-            <div className="flex items-center gap-1.5 min-w-max">
-              {filterOptions.map((opt) => (
-                <button
-                  key={opt.value}
-                  onClick={() => setFilter(opt.value)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold tracking-wide transition-all cursor-pointer ${
-                    filter === opt.value
-                      ? "bg-indigo-600 text-white shadow-sm shadow-indigo-600/10"
-                      : "text-slate-500 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-300"
-                  }`}
-                >
-                  {opt.label}
-                </button>
-              ))}
+        <div className="grid md:grid-cols-2 gap-x-12 gap-y-16">
+          {skillCategories.map((category) => (
+            <div key={category.id} className="space-y-6">
+              <h3 className="text-sm uppercase tracking-widest font-bold text-zinc-900 dark:text-zinc-100 border-l border-zinc-900 dark:border-zinc-100 pl-4">
+                {category.title}
+              </h3>
+              
+              <ul className="space-y-3">
+                {category.skills.map((skill, sIdx) => (
+                  <li key={sIdx} className="flex justify-between items-baseline border-b border-zinc-100 dark:border-zinc-900 pb-2">
+                    <span className="text-sm font-normal text-zinc-700 dark:text-zinc-300">
+                      {skill.name}
+                    </span>
+                    <span className="text-[10px] uppercase tracking-widest text-zinc-400 font-medium">
+                      {skill.level}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
+          ))}
         </div>
-
-        {/* Skills Grid */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-6 print-grid">
-          <AnimatePresence mode="popLayout">
-            {filteredCategories.map((category) => (
-              <motion.div
-                layout
-                key={category.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.25 }}
-                className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-slate-200/60 dark:border-zinc-800/80 shadow-sm hover:shadow-[0_0_30px_rgba(99,102,241,0.12)] dark:hover:shadow-[0_0_30px_rgba(99,102,241,0.1)] hover:border-indigo-500/20 transition-all duration-300 print-card"
-              >
-                {/* Category Title */}
-                <div className="flex items-center gap-2 mb-6 pb-2 border-b border-slate-100 dark:border-zinc-800/60">
-                  {category.icon}
-                  <h3 className="font-display font-bold text-slate-800 dark:text-zinc-200">
-                    {category.title}
-                  </h3>
-                </div>
-
-                {/* Skills List */}
-                <div className="space-y-4">
-                  {category.skills.map((skill, sIdx) => (
-                    <div key={sIdx} className="space-y-1.5">
-                      <div className="flex justify-between items-end">
-                        <span className="text-sm font-semibold text-slate-700 dark:text-zinc-300">
-                          {skill.name}
-                        </span>
-                        <span className="text-xs text-indigo-600 dark:text-indigo-400 font-medium">
-                          {skill.level}
-                        </span>
-                      </div>
-
-                      {/* Progress Bar (hidden in printing for clean print look) */}
-                      <div className="w-full h-2 bg-slate-100 dark:bg-zinc-800/50 rounded-full overflow-hidden no-print">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.percentage}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1, delay: sIdx * 0.05 }}
-                          className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-400 rounded-full"
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
       </div>
     </section>
   );

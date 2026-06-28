@@ -157,9 +157,12 @@ body {
   }
 }
 
-/* Hide scrollbars utility */
-.scrollbar-none::-webkit-scrollbar {
-  display: none !important;
+.zine-portrait {
+  filter: grayscale(1) contrast(1.25);
+  mix-blend-mode: multiply;
+}
+.dark .zine-portrait {
+  mix-blend-mode: screen;
 }
 .scrollbar-none {
   -ms-overflow-style: none !important;

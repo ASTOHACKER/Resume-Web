@@ -32,21 +32,44 @@ export default function Projects() {
   ];
 
   return (
-    <section id="projects" className="py-20 print-container">
+    <section id="projects" className="section-spacing print-container">
       <div className="max-w-5xl mx-auto px-4">
-        <h2 className="text-sm uppercase tracking-widest text-slate-500 mb-12 border-b border-slate-200 pb-4">
-          Selected Works // GitHub Archive
+        <h2 className="text-xs uppercase tracking-[0.2em] text-slate-500 dark:text-zinc-500 mb-20 border-b border-zinc-200 dark:border-zinc-800 pb-4">
+          Selected Works // Editorial Archive
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-slate-200 border border-slate-200">
+        <div className="space-y-12">
           {projects.map((project, i) => (
-            <div key={i} className="bg-background p-8 hover:bg-slate-50 transition-colors">
-              <span className="text-[10px] uppercase tracking-tighter text-slate-400">{project.type}</span>
-              <h3 className="text-xl font-medium mt-2 mb-4">{project.title}</h3>
-              <p className="text-sm text-slate-600 mb-6 font-light leading-relaxed">{project.desc}</p>
-              
-              <div className="flex gap-4">
-                <a href={project.github} target="_blank" className="text-xs border-b border-slate-800 pb-0.5 hover:text-blue-600">VIEW REPO</a>
+            <div key={i} className="group border-t border-zinc-200 dark:border-zinc-800 pt-12 first:border-t-0 print-card">
+              <div className="grid md:grid-cols-[100px,1fr] gap-8">
+                {/* Indexing */}
+                <div className="text-[10px] uppercase tracking-widest text-zinc-400 dark:text-zinc-600 font-medium">
+                  {String(i + 1).padStart(2, '0')}
+                </div>
+                
+                {/* Content */}
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-3xl font-medium tracking-tight text-foreground">
+                      {project.title} 
+                      <span className="text-zinc-400 dark:text-zinc-600 font-light">— {project.type}</span>
+                    </h3>
+                  </div>
+                  
+                  <p className="text-sm text-zinc-600 dark:text-zinc-400 font-normal leading-relaxed max-w-2xl">
+                    {project.desc}
+                  </p>
+
+                  <div className="flex gap-8 uppercase text-[10px] tracking-[0.2em] font-bold">
+                    <a 
+                      href={project.github} 
+                      target="_blank" 
+                      className="text-zinc-900 dark:text-zinc-100 border-b border-zinc-800 dark:border-zinc-200 hover:opacity-60 transition-opacity"
+                    >
+                      View Repository
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           ))}

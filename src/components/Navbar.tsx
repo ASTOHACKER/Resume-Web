@@ -47,17 +47,13 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 no-print ${
-        isScrolled
-          ? "py-3 glass-panel shadow-lg"
-          : "py-5 bg-transparent border-b border-transparent"
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800 transition-all duration-300 no-print"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-12">
           {/* Logo */}
           <div className="flex items-center gap-2 group cursor-pointer">
-            <div className="w-10 h-10 border-2 border-foreground flex items-center justify-center rotate-3 hover:rotate-0 transition-transform duration-300">
+            <div className="w-10 h-10 border-2 border-foreground flex items-center justify-center rotate-0 transition-transform duration-300">
               <span className="font-display font-black text-lg">N</span>
             </div>
             <div className="flex flex-col">
