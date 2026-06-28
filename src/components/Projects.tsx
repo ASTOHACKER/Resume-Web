@@ -1,77 +1,100 @@
 "use client";
 
 import React from "react";
+import Marginalia from "./Marginalia";
 
 interface Project {
   title: string;
   type: string;
   desc: string;
   github: string;
+  core: string;
+  data: string;
 }
-
-import Marginalia from "./Marginalia";
 
 export default function Projects() {
   const projects: Project[] = [
     {
       title: "JOBDEE",
-      type: "Next.js / Supabase",
-      desc: "แพลตฟอร์มหางานยุคใหม่ที่เน้นความเร็วและ SSR พัฒนาด้วยมาตรฐาน Supabase",
+      type: "Job Board",
+      desc: "แพลตฟอร์มหางานที่ออกแบบมาเพื่อการค้นหาที่รวดเร็วและแม่นยำ ด้วยโครงสร้าง SSR ที่มีประสิทธิภาพสูง",
       github: "https://github.com/ASTOHACKER/JOBDEE",
+      core: "Next.js 16",
+      data: "Supabase SSR",
     },
     {
       title: "Manga Translator",
-      type: "Python / AI",
-      desc: "เครื่องมือแปลมังงะอัตโนมัติ ใช้ EasyOCR ร่วมกับ OpenCV ทำ Inpainting ลบคำเดิม",
+      type: "AI Automation",
+      desc: "ระบบแปลมังงะอัตโนมัติด้วย AI ประมวลผลภาพและข้อความแบบ Workflow พร้อมรองรับภาษาไทย",
       github: "https://github.com/ASTOHACKER/manga-transalate-th",
+      core: "Python",
+      data: "OpenAI API",
     },
     {
-      title: "SymbolToImages",
-      type: "Python Utility",
-      desc: "โปรแกรมประมวลผลคำสั่งเชิงเทคนิคเพื่อแปลงรหัสเป็นพิกเซลกราฟิก",
-      github: "https://github.com/ASTOHACKER/SymbolToImages",
+      title: "ElysiaTest",
+      type: "Backend Lab",
+      desc: "การสำรวจประสิทธิภาพของ ElysiaJS Framework สำหรับการสร้าง Backend ที่มีความหน่วงต่ำ",
+      github: "https://github.com/ASTOHACKER/ElysiaTest",
+      core: "ElysiaJS",
+      data: "None",
+    },
+    {
+      title: "FOODNEXTS",
+      type: "Service Platform",
+      desc: "โปรเจกต์จัดการร้านอาหารที่เน้น UX/UI ที่ทันสมัยและระบบจัดการข้อมูลที่มีประสิทธิภาพ",
+      github: "#",
+      core: "TypeScript",
+      data: "Supabase",
+    },
+    {
+      title: "My App",
+      type: "Internal Tools",
+      desc: "โปรเจกต์ส่วนตัวที่กำลังพัฒนาเพื่อทดลองฟีเจอร์ใหม่ๆ ในการจัดการ Application state",
+      github: "#",
+      core: "TypeScript",
+      data: "Pending",
     },
   ];
 
   return (
-    <section id="projects" className="section-spacing print-container relative">
+    <section id="projects" className="section-spacing-xl print-container relative">
       <Marginalia text="// selected works" />
       <div className="max-w-5xl mx-auto px-4">
-        <h2 className="text-xs uppercase tracking-[0.2em] text-slate-500 dark:text-zinc-500 mb-20 border-b border-zinc-200 dark:border-zinc-800 pb-4">
+        <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-zinc-500 mb-20 border-b border-zinc-200 dark:border-zinc-800 pb-4">
           Selected Works // Editorial Archive
         </h2>
         
-        <div className="space-y-12">
+        <div className="grid md:grid-cols-2 gap-16">
           {projects.map((project, i) => (
-            <div key={i} className="group border-t border-zinc-200 dark:border-zinc-800 pt-12 first:border-t-0 print-card">
-              <div className="grid md:grid-cols-[100px,1fr] gap-8">
-                {/* Indexing */}
-                <div className="text-[10px] uppercase tracking-widest text-zinc-400 dark:text-zinc-600 font-medium">
+            <div key={i} className="group border-t border-zinc-200 dark:border-zinc-800 pt-8 first:border-t-0 print-card">
+              <div className="space-y-6">
+                <div className="text-[10px] uppercase tracking-widest text-zinc-400 dark:text-zinc-600 font-medium mb-4">
                   {String(i + 1).padStart(2, '0')}
                 </div>
                 
-                {/* Content */}
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="text-3xl font-medium tracking-tighter text-foreground">
-                      {project.title} 
-                      <span className="text-zinc-400 dark:text-zinc-600 font-light">— {project.type}</span>
-                    </h3>
-                  </div>
-                  
-                  <p className="text-sm text-zinc-600 dark:text-zinc-400 font-normal leading-relaxed max-w-2xl">
-                    {project.desc}
-                  </p>
+                <div>
+                  <h3 className="text-xl font-medium tracking-tighter text-foreground">
+                    {project.title} 
+                    <span className="text-zinc-400 dark:text-zinc-600 font-light ml-2">— {project.type}</span>
+                  </h3>
+                </div>
+                
+                <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal h-20">
+                  {project.desc}
+                </p>
 
-                  <div className="flex gap-8 uppercase text-[10px] tracking-[0.2em] font-bold">
-                    <a 
-                      href={project.github} 
-                      target="_blank" 
-                      className="text-zinc-900 dark:text-zinc-100 border-b border-zinc-800 dark:border-zinc-200 hover:opacity-60 transition-opacity"
-                    >
-                      View Repository
-                    </a>
-                  </div>
+                {/* Technical Spec Table */}
+                <div className="grid grid-cols-2 gap-4 border-t border-zinc-100 dark:border-zinc-900 pt-4 mt-4">
+                  <div className="text-[9px] uppercase tracking-wider text-zinc-400">Core</div>
+                  <div className="text-[9px] font-mono text-zinc-900 dark:text-zinc-100 text-right">{project.core}</div>
+                  <div className="text-[9px] uppercase tracking-wider text-zinc-400">Data</div>
+                  <div className="text-[9px] font-mono text-zinc-900 dark:text-zinc-100 text-right">{project.data}</div>
+                </div>
+
+                <div className="pt-2">
+                  <a href={project.github} className="text-[10px] uppercase tracking-[0.2em] font-bold border-b border-zinc-900 dark:border-zinc-100 pb-0.5 hover:opacity-60 transition-opacity">
+                    GitHub [1]
+                  </a>
                 </div>
               </div>
             </div>

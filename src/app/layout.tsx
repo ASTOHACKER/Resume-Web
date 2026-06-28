@@ -3,6 +3,7 @@ import { Prompt, Outfit } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import ArchivalLog from "@/components/ArchivalLog";
+import RootLayoutWrapper from "./RootLayoutWrapper";
 
 const promptFont = Prompt({
   variable: "--font-prompt",
@@ -13,22 +14,7 @@ const promptFont = Prompt({
 const outfitFont = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
-  weight: ["400", "600"],
 });
-
-export const metadata: Metadata = {
-  title: "นฤดม โอกาศ | Software Developer Portfolio & Resume",
-  description: "เรซูเม่และพอร์ตโฟลิโอของ นฤดม โอกาศ (Narudom O-kart) นักศึกษาไอที มหาวิทยาลัยสงขลานครินทร์ ผู้หลงใหลในการเขียนโค้ดและพัฒนาเว็บแอปพลิเคชันด้วย Next.js, TypeScript, Supabase, และ MongoDB",
-  keywords: ["นฤดม โอกาศ", "Narudom O-kart", "Software Developer", "Web Developer", "Next.js", "TypeScript", "พอร์ตโฟลิโอ", "เรซูเม่", "สมัครงาน", "ฝึกงาน", "Programmer", "PSU IT"],
-  authors: [{ name: "นฤดม โอกาศ", url: "mailto:disasdrop@gmail.com" }],
-  creator: "นฤดม โอกาศ",
-  openGraph: {
-    title: "นฤดม โอกาศ | Software Developer Portfolio",
-    description: "นักศึกษาไอที มหาวิทยาลัยสงขลานครินทร์ ที่ชื่นชอบการพัฒนาเว็บแอปพลิเคชัน ค้นหาโอกาสในการฝึกงานตำแหน่ง Programmer / Developer",
-    type: "website",
-    locale: "th_TH",
-  },
-};
 
 export default function RootLayout({
   children,
@@ -43,11 +29,12 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col font-sans">
         <ThemeProvider>
-          {children}
-          <ArchivalLog />
+          <RootLayoutWrapper>
+            {children}
+            <ArchivalLog />
+          </RootLayoutWrapper>
         </ThemeProvider>
       </body>
     </html>
   );
 }
-

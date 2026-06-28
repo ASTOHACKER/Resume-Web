@@ -27,7 +27,7 @@ export default function Home() {
       <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 section-spacing print-container">
         {/* Hero Section */}
         <Hero />
-        
+
         {/* About Section */}
         <About />
 
@@ -45,8 +45,8 @@ export default function Home() {
 
         {/* Interactive Sections (Hidden on Print) */}
         <div className="no-print space-y-16">
-            <AIChatbot />
-            <Terminal />
+          <AIChatbot />
+          <Terminal />
         </div>
 
         {/* Contact Section */}
