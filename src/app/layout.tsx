@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Prompt, Outfit } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import ArchivalLog from "@/components/ArchivalLog";
 
 const promptFont = Prompt({
   variable: "--font-prompt",
@@ -43,6 +44,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-sans">
         <ThemeProvider>
           {children}
+          <ArchivalLog />
         </ThemeProvider>
       </body>
     </html>
