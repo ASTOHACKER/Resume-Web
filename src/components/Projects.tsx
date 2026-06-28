@@ -2,6 +2,7 @@
 
 import React from "react";
 import Marginalia from "./Marginalia";
+import { FolderGit2, Cpu, Database, Code2 } from "lucide-react";
 
 interface Project {
   title: string;
@@ -10,6 +11,7 @@ interface Project {
   github: string;
   core: string;
   data: string;
+  icon: React.ReactNode;
 }
 
 export default function Projects() {
@@ -21,6 +23,7 @@ export default function Projects() {
       github: "https://github.com/ASTOHACKER/JOBDEE",
       core: "Next.js 16",
       data: "Supabase SSR",
+      icon: <FolderGit2 size={12} />,
     },
     {
       title: "Manga Translator",
@@ -29,6 +32,7 @@ export default function Projects() {
       github: "https://github.com/ASTOHACKER/manga-transalate-th",
       core: "Python",
       data: "OpenAI API",
+      icon: <Cpu size={12} />,
     },
     {
       title: "ElysiaTest",
@@ -37,6 +41,7 @@ export default function Projects() {
       github: "https://github.com/ASTOHACKER/ElysiaTest",
       core: "ElysiaJS",
       data: "None",
+      icon: <Database size={12} />,
     },
     {
       title: "FOODNEXTS",
@@ -45,6 +50,7 @@ export default function Projects() {
       github: "#",
       core: "TypeScript",
       data: "Supabase",
+      icon: <Code2 size={12} />,
     },
     {
       title: "My App",
@@ -53,6 +59,7 @@ export default function Projects() {
       github: "#",
       core: "TypeScript",
       data: "Pending",
+      icon: <Code2 size={12} />,
     },
   ];
 
@@ -68,8 +75,9 @@ export default function Projects() {
           {projects.map((project, i) => (
             <div key={i} className="group border-t border-zinc-200 dark:border-zinc-800 pt-8 first:border-t-0 print-card">
               <div className="space-y-6">
-                <div className="text-[10px] uppercase tracking-widest text-zinc-400 dark:text-zinc-600 font-medium mb-4">
+                <div className="text-[10px] uppercase tracking-widest text-zinc-400 dark:text-zinc-600 font-medium mb-4 flex items-center gap-2">
                   {String(i + 1).padStart(2, '0')}
+                  {project.icon}
                 </div>
                 
                 <div>
@@ -83,7 +91,6 @@ export default function Projects() {
                   {project.desc}
                 </p>
 
-                {/* Technical Spec Table */}
                 <div className="grid grid-cols-2 gap-4 border-t border-zinc-100 dark:border-zinc-900 pt-4 mt-4">
                   <div className="text-[9px] uppercase tracking-wider text-zinc-400">Core</div>
                   <div className="text-[9px] font-mono text-zinc-900 dark:text-zinc-100 text-right">{project.core}</div>

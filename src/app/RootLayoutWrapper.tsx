@@ -1,13 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import FocusModeToggle from "@/components/FocusModeToggle";
+import React from "react";
 import AudioArchive from "@/components/AudioArchive";
 import HackerWarning from "@/components/HackerWarning";
+import ReadingProgress from "@/components/ReadingProgress";
 
 export default function RootLayoutWrapper({ children }: { children: React.ReactNode }) {
   return (
     <div>
+      <ReadingProgress />
       {children}
       <HackerWarning />
       <div className="fixed bottom-6 left-6 z-50">
