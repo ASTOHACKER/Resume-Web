@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Code2, Database, Cpu, Bot } from "lucide-react";
 
 export default function Skills() {
@@ -71,16 +70,39 @@ export default function Skills() {
   return (
     <section id="skills" className="section-spacing print-container">
       <div className="max-w-5xl mx-auto px-4">
-        <h2 className="text-xs uppercase tracking-[0.2em] text-slate-500 dark:text-zinc-500 mb-20 border-b border-zinc-200 dark:border-zinc-800 pb-4">
+        <h2 className="text-xs uppercase tracking-[0.2em] text-slate-500 dark:text-zinc-500 mb-12 border-b border-zinc-200 dark:border-zinc-800 pb-4">
           Technical Archive // Skills & Proficiency
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-x-12 gap-y-16">
-          {skillCategories.map((category) => (
+        {/* Dynamic Archive Filter Buttons */}
+        <div className="flex flex-wrap gap-2 mb-16 no-print">
+          {filterOptions.map((opt) => {
+            const isActive = filter === opt.value;
+            return (
+              <button
+                key={opt.value}
+                onClick={() => setFilter(opt.value)}
+                className={`px-4 py-2 border text-[10px] font-mono uppercase tracking-widest transition-all cursor-pointer rounded-none ${
+                  isActive
+                    ? "bg-zinc-900 text-zinc-100 border-zinc-900 dark:bg-zinc-100 dark:text-zinc-900 dark:border-zinc-100"
+                    : "border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 hover:border-zinc-400 dark:hover:border-zinc-600 bg-transparent"
+                }`}
+              >
+                {opt.label}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-x-12 gap-y-16 transition-all duration-300">
+          {filteredCategories.map((category) => (
             <div key={category.id} className="space-y-6">
-              <h3 className="text-sm uppercase tracking-widest font-bold text-zinc-900 dark:text-zinc-100 border-l border-zinc-900 dark:border-zinc-100 pl-4">
-                {category.title}
-              </h3>
+              <div className="flex items-center gap-3">
+                {category.icon}
+                <h3 className="text-sm uppercase tracking-widest font-bold text-zinc-900 dark:text-zinc-100 border-l border-zinc-900 dark:border-zinc-100 pl-4">
+                  {category.title}
+                </h3>
+              </div>
               
               <ul className="space-y-3">
                 {category.skills.map((skill, sIdx) => (

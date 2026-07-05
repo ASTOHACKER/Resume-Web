@@ -12,11 +12,14 @@ export default function About() {
 
         <div className="grid md:grid-cols-[200px,1fr,240px] gap-12">
           {/* Portrait Block */}
-          <div className="relative w-48 h-64 md:w-full md:h-full overflow-hidden border border-zinc-200 dark:border-zinc-800">
-            <img 
+          <div className="relative w-48 h-64 md:w-full md:h-full overflow-hidden border border-zinc-200 dark:border-zinc-800 min-h-[260px]">
+            <Image 
               src="/profile.webp" 
               alt="Narudom O-kart" 
-              className="zine-portrait w-full h-full object-cover"
+              fill
+              priority
+              sizes="(max-width: 768px) 192px, 200px"
+              className="zine-portrait object-cover"
             />
           </div>
 
@@ -49,7 +52,7 @@ export default function About() {
             <div>
               <h4 className="text-[10px] uppercase tracking-[0.2em] font-bold mb-6 text-zinc-900 dark:text-zinc-100">Core Value</h4>
               <p className="text-[11px] leading-relaxed italic text-zinc-500 dark:text-zinc-600">
-                "Keep it simple, maintainable, and human-centric."
+                &quot;Keep it simple, maintainable, and human-centric.&quot;
               </p>
             </div>
           </aside>

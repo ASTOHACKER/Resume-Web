@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { ShieldAlert, X } from "lucide-react";
 
 export default function HackerWarning() {
   const [show, setShow] = useState(false);
@@ -8,26 +9,27 @@ export default function HackerWarning() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShow(true);
-    }, 5000);
+    }, 3000);
     return () => clearTimeout(timer);
   }, []);
 
   if (!show) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-      <div className="bg-zinc-900 border border-zinc-700 p-8 max-w-sm w-full text-center shadow-2xl">
-        <h2 className="text-xl font-mono text-red-500 mb-4 animate-pulse">WARNING: SYSTEM BREACH</h2>
-        <p className="text-zinc-300 font-mono text-sm mb-8">
-          Unauthorized access detected. IP 127.0.0.1 logged. Archival security protocols initiated.
-        </p>
-        <button 
-          onClick={() => setShow(false)}
-          className="px-6 py-2 border border-zinc-500 text-zinc-100 hover:bg-zinc-800 transition-colors text-[10px] uppercase tracking-widest"
-        >
-          Acknowledge
-        </button>
+    <div className="sticky top-12 left-0 right-0 z-40 bg-red-950/90 text-red-200 border-b border-red-900 px-4 py-2.5 font-mono text-[10px] uppercase tracking-widest flex items-center justify-between no-print backdrop-blur-xs transition-all animate-in fade-in slide-in-from-top duration-500">
+      <div className="flex items-center gap-3">
+        <ShieldAlert size={14} className="text-red-400 animate-pulse" />
+        <span>
+          {"[WARNING] SYSTEM ANOMALY DETECTED // ACCESS AT 127.0.0.1 LOGGED // SECURITY PROTOCOLS LIVE"}
+        </span>
       </div>
+      <button 
+        onClick={() => setShow(false)}
+        className="p-1 hover:text-white transition-colors cursor-pointer"
+        aria-label="Acknowledge warning"
+      >
+        <X size={12} />
+      </button>
     </div>
   );
 }

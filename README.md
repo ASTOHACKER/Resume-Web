@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Narudom O-kart // Editorial Archive
 
-## Getting Started
+A typography-driven, engineering-first portfolio system. Built for high-performance, maintainable web delivery.
 
-First, run the development server:
+## 01. ARCHITECTURE
+This project is an **Editorial Archive System**, moving away from traditional "card-based" portfolios to a content-first, zine-inspired archival format.
+
+### Stack
+- **Framework:** Next.js 16 (App Router)
+- **Styling:** Tailwind CSS v4, Zinc Color Palette
+- **Optimization:** Print-ready CSS architecture (A4 Reflow)
+- **Engineering:** Type-safe, CI/CD-ready, Strict-mode TypeScript
+
+---
+
+## 02. CORE PHILOSOPHY
+1. **Typography-Driven:** Visual hierarchy is established through font weight and tracking.
+2. **Raw Engineering:** Monospace data sheets for technical specifications instead of generic UI blocks.
+3. **Living Archive:** Real-time git-based metadata (Archival Log) and interactive system warnings.
+
+---
+
+## 03. TECHNICAL SPECIFICATIONS
+| Component | Implementation Logic |
+| :--- | :--- |
+| **Interface** | Asymmetric Zine Layout |
+| **Monitoring** | Git-based Archival Log |
+| **Engineering** | CI/CD Ready / TS-Strict |
+| **Audio** | Metadata-focused soundtrack injection |
+
+---
+
+## 04. HOW TO RUN
+You can run a local instance of this digital archive directly from your terminal:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npx narudom-resume@latest
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 05. DEVELOPMENT WORKFLOW
+- **CI/CD:** Managed via GitHub Actions & Vercel Edge.
+- **Workflow:** AI-Native development (Hermes/Cline-assisted coding).
+- **QA:** Lint-ready, type-safe development environment.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*Document updated: 2026.06.28*

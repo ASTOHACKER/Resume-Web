@@ -16,6 +16,11 @@ const outfitFont = Outfit({
   subsets: ["latin"],
 });
 
+export const metadata: Metadata = {
+  title: "Narudom O-kart // Editorial Archive",
+  description: "Personal portfolio and technical archive of Narudom O-kart.",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,6 +32,9 @@ export default function RootLayout({
       className={`${promptFont.variable} ${outfitFont.variable} h-full antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <body className="min-h-full flex flex-col font-sans">
         <ThemeProvider>
           <RootLayoutWrapper>

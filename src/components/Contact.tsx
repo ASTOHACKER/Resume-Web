@@ -15,7 +15,7 @@ export default function Contact() {
         <div className="grid md:grid-cols-2 gap-12">
           <div className="space-y-6">
             <h3 className="text-2xl font-medium tracking-tight">
-              Let's connect regarding opportunities or technical exchange.
+              Let&apos;s connect regarding opportunities or technical exchange.
             </h3>
             <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
               ผมเปิดรับโอกาสในการฝึกงานและการร่วมงานในโปรเจกต์ที่ท้าทาย หากคุณมีความสนใจหรือต้องการสอบถามข้อมูลเพิ่มเติม สามารถติดต่อผมได้โดยตรงผ่านช่องทางเหล่านี้

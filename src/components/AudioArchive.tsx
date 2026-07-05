@@ -1,10 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function AudioArchive() {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoId = "l70B7oRYKoo"; // 9Lana - 九尾
+
+  useEffect(() => {
+    const handleToggle = () => {
+      setIsPlaying((prev) => !prev);
+    };
+    window.addEventListener("toggle-soundtrack", handleToggle);
+    return () => window.removeEventListener("toggle-soundtrack", handleToggle);
+  }, []);
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex items-center gap-4 no-print">

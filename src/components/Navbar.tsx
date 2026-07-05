@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect, useMemo } from "react";
 import { useTheme } from "./ThemeProvider";
-import { Sun, Moon, Menu, X, Code } from "lucide-react";
+import { Sun, Moon, Menu, X, Search } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
@@ -47,7 +48,11 @@ export default function Navbar() {
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800 transition-all duration-300 no-print"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 no-print ${
+        isScrolled
+          ? "bg-background/90 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800 shadow-sm"
+          : "bg-transparent border-b border-transparent"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-12">
@@ -65,19 +70,36 @@ export default function Navbar() {
 
           {/* Desktop Nav Links - Centered & Minimal */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-[11px] uppercase tracking-widest font-medium text-foreground hover:opacity-50 transition-opacity"
-              >
-                {link.name}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.substring(1);
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className={`text-[11px] uppercase tracking-widest font-medium transition-all ${
+                    isActive
+                      ? "text-primary dark:text-primary font-bold border-b border-primary dark:border-primary pb-0.5"
+                      : "text-foreground hover:opacity-50"
+                  }`}
+                >
+                  {link.name}
+                </a>
+              );
+            })}
           </div>
 
           {/* Utilities */}
           <div className="hidden md:flex items-center gap-4">
+            {/* Search Trigger */}
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent("open-command-palette"))}
+              className="px-2.5 py-1 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 text-[9px] font-mono uppercase tracking-widest text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors cursor-pointer flex items-center gap-1.5"
+              aria-label="Open command palette"
+            >
+              <span>Search</span>
+              <kbd className="text-[8px] bg-zinc-100 dark:bg-zinc-900/50 px-1 border border-zinc-200 dark:border-zinc-800">Ctrl+K</kbd>
+            </button>
+
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
@@ -90,6 +112,13 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-2">
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent("open-command-palette"))}
+              className="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-800 text-slate-700 dark:text-zinc-300 transition-colors cursor-pointer"
+              aria-label="Open search"
+            >
+              <Search size={18} />
+            </button>
             <button
               onClick={toggleTheme}
               className="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-800 text-slate-700 dark:text-zinc-300 transition-colors cursor-pointer"
@@ -108,21 +137,36 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden glass-panel border-t border-slate-200/10 mt-2 py-4 px-4 space-y-3 shadow-xl">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block py-2 text-base font-medium text-slate-700 hover:text-indigo-600 dark:text-zinc-300 dark:hover:text-indigo-400"
-            >
-              {link.name}
-            </a>
-          ))}
-        </div>
-      )}
+      {/* Mobile Menu with Framer Motion slide-down */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="md:hidden glass-panel border-t border-slate-200/10 mt-2 py-4 px-4 space-y-3 shadow-xl overflow-hidden"
+          >
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.substring(1);
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`block py-2 text-xs font-mono uppercase tracking-widest transition-all ${
+                    isActive
+                      ? "text-primary dark:text-primary font-bold pl-2 border-l border-primary"
+                      : "text-slate-700 hover:text-indigo-600 dark:text-zinc-300 dark:hover:text-indigo-400"
+                  }`}
+                >
+                  {link.name}
+                </a>
+              );
+            })}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

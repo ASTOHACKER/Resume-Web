@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Send, Bot, User, CornerDownLeft, Sparkles } from "lucide-react";
+import { Bot, User, CornerDownLeft, Sparkles } from "lucide-react";
 
 interface Message {
   sender: "bot" | "user";
@@ -14,7 +13,7 @@ export default function AIChatbot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       sender: "bot",
-      text: "สวัสดีครับ! ยินดีต้อนรับเข้าสู่พอร์ตโฟลิโอของผม ผมคือบอทข้อมูลจำลองของ นฤดม โอกาศ คุณอยากสอบถามข้อมูลส่วนไหนของผมดีครับ? (เลือกหัวข้อด้านล่างได้เลยครับ)",
+      text: "System ready. Please query the archive for information regarding Narudom O-kart. Select a topic below to initiate retrieval.",
       timestamp: new Date(),
     },
   ]);
@@ -60,7 +59,7 @@ export default function AIChatbot() {
       return "พร้อมเริ่มงาน/ฝึกงานได้ทันทีครับ! สามารถนัดสัมภาษณ์ได้ผ่านอีเมลหรือเบอร์โทรศัพท์ที่ให้ไว้ได้เลยครับ";
     }
 
-    return "อยากรู้อะไรเพิ่มเติมเกี่ยวกับนฤดมไหมครับ? ลองถามเกี่ยวกับ 'ผลงาน', 'จุดเด่น', หรือ 'ทักษะ' ได้เลยครับ";
+    return "System request recognized. Please query the archive for information regarding Narudom O-kart.";
   };
 
   const handleSendMessage = (text: string) => {
@@ -99,33 +98,33 @@ export default function AIChatbot() {
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-400 text-xs font-semibold mb-3">
             <Sparkles size={12} className="animate-spin-slow" />
-            AI Interactive Resume
+            AI ARCHIVAL ASSISTANT
           </div>
           <h2 className="text-3xl font-display font-bold text-slate-900 dark:text-zinc-50">
-            ผู้ช่วย AI ส่วนตัว
+            SYSTEM INTERFACE
           </h2>
           <p className="mt-2 text-sm text-slate-500 dark:text-zinc-400 max-w-md mx-auto font-light">
-            สอบถามข้อมูลและสัมภาษณ์ข้อมูลเบื้องต้นเกี่ยวกับ นฤดม โอกาศ ได้ผ่านห้องแชทอัจฉริยะนี้
+            Query the official technical archive for information.
           </p>
         </div>
 
         {/* Chat Box Container */}
-        <div className="rounded-2xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xl overflow-hidden flex flex-col h-[500px]">
+        <div className="rounded-none border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xl overflow-hidden flex flex-col h-[500px]">
           {/* Chat Header */}
-          <div className="bg-indigo-600 dark:bg-indigo-950/80 px-4 py-3 flex items-center gap-3 text-white">
-            <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center">
-              <Bot size={20} className="text-indigo-200" />
+          <div className="bg-zinc-900 px-4 py-3 flex items-center gap-3 text-white border-b border-zinc-700">
+            <div className="w-9 h-9 rounded-none bg-white/10 flex items-center justify-center">
+              <Bot size={20} className="text-emerald-400" />
             </div>
             <div>
-              <h3 className="text-sm font-bold tracking-wide">NARUDOM AI ASSISTANT</h3>
-              <p className="text-[10px] text-indigo-200 flex items-center gap-1">
-                <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping" /> Online • ตอบกลับทันที
+              <h3 className="text-[11px] font-bold tracking-[0.2em] uppercase">ARCHIVE_NODE_01</h3>
+              <p className="text-[9px] text-emerald-400 flex items-center gap-1 uppercase font-mono">
+                <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping" /> Online • Ready to retrieve
               </p>
             </div>
           </div>
 
           {/* Messages Area */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/50 dark:bg-zinc-900/40">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-white dark:bg-zinc-950">
             {messages.map((msg, index) => (
               <div
                 key={index}
@@ -134,9 +133,9 @@ export default function AIChatbot() {
               >
                 {/* Avatar */}
                 <div
-                  className={`w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center text-xs ${msg.sender === "user"
-                      ? "bg-indigo-100 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400"
-                      : "bg-slate-200 dark:bg-zinc-800 text-slate-600 dark:text-zinc-400"
+                  className={`w-7 h-7 rounded-none flex-shrink-0 flex items-center justify-center text-xs ${msg.sender === "user"
+                      ? "bg-zinc-200 dark:bg-zinc-800 text-zinc-600"
+                      : "bg-zinc-900 text-emerald-400"
                     }`}
                 >
                   {msg.sender === "user" ? <User size={14} /> : <Bot size={14} />}
@@ -144,9 +143,9 @@ export default function AIChatbot() {
 
                 {/* Bubble */}
                 <div
-                  className={`p-3.5 rounded-2xl text-sm whitespace-pre-line leading-relaxed shadow-sm ${msg.sender === "user"
-                      ? "bg-indigo-600 text-white rounded-tr-none"
-                      : "bg-white dark:bg-zinc-800 text-slate-800 dark:text-zinc-200 rounded-tl-none border border-slate-200/50 dark:border-zinc-700/30"
+                  className={`p-3.5 rounded-none text-xs whitespace-pre-line leading-relaxed font-mono ${msg.sender === "user"
+                      ? "bg-zinc-100 text-zinc-800 border border-zinc-200"
+                      : "bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700"
                     }`}
                 >
                   {msg.text}
@@ -157,13 +156,13 @@ export default function AIChatbot() {
             {/* Typing Indicator */}
             {isTyping && (
               <div className="flex gap-3 max-w-[85%] mr-auto">
-                <div className="w-7 h-7 rounded-full bg-slate-200 dark:bg-zinc-800 flex items-center justify-center text-slate-600 dark:text-zinc-400">
+                <div className="w-7 h-7 rounded-none bg-zinc-900 flex items-center justify-center text-emerald-400">
                   <Bot size={14} />
                 </div>
-                <div className="p-4 rounded-2xl rounded-tl-none bg-white dark:bg-zinc-800 border border-slate-200/50 dark:border-zinc-700/30 shadow-sm flex items-center gap-1.5">
-                  <span className="w-2 h-2 bg-slate-400 dark:bg-zinc-500 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                  <span className="w-2 h-2 bg-slate-400 dark:bg-zinc-500 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                  <span className="w-2 h-2 bg-slate-400 dark:bg-zinc-500 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                <div className="p-4 rounded-none bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 shadow-sm flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
+                  <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" style={{ animationDelay: "150ms" }} />
+                  <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" style={{ animationDelay: "300ms" }} />
                 </div>
               </div>
             )}
@@ -171,12 +170,12 @@ export default function AIChatbot() {
           </div>
 
           {/* Quick Suggestions Box */}
-          <div className="px-4 py-3 bg-white dark:bg-zinc-900 border-t border-slate-100 dark:border-zinc-800/80 flex flex-wrap gap-2">
+          <div className="px-4 py-3 bg-zinc-50 dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800 flex flex-wrap gap-2">
             {suggestions.map((sug, idx) => (
               <button
                 key={idx}
-                onClick={() => handleSendMessage(sug.text.substring(2))} // Remove emoji for queries
-                className="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-zinc-800 text-xs font-medium text-slate-600 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400 hover:bg-indigo-50/30 dark:hover:bg-indigo-950/20 transition-all text-left"
+                onClick={() => handleSendMessage(sug.text.substring(2))}
+                className="px-3 py-1.5 border border-zinc-300 dark:border-zinc-700 text-[10px] font-mono uppercase tracking-widest text-zinc-500 hover:text-emerald-600 hover:border-emerald-600 transition-all text-left"
               >
                 {sug.text}
               </button>
@@ -189,21 +188,21 @@ export default function AIChatbot() {
               e.preventDefault();
               handleSendMessage(inputValue);
             }}
-            className="p-3 border-t border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-950 flex items-center gap-2"
+            className="p-3 border-t border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-950 flex items-center gap-2"
           >
             <input
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              placeholder="พิมพ์คำถามที่นี่..."
-              className="flex-1 px-4 py-2 rounded-xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-800 dark:text-zinc-200"
+              placeholder="QUERY ARCHIVE..."
+              className="flex-1 px-4 py-2 rounded-none border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-[11px] font-mono focus:outline-none focus:ring-1 focus:ring-emerald-500 text-zinc-800 dark:text-zinc-200"
             />
             <button
               type="submit"
               disabled={!inputValue.trim()}
-              className="p-2 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 disabled:bg-slate-300 dark:disabled:bg-zinc-800 disabled:text-slate-400 dark:disabled:text-zinc-600 transition-colors"
+              className="p-2 bg-zinc-900 text-emerald-400 hover:bg-zinc-800 transition-colors"
             >
-              <Send size={18} />
+              <CornerDownLeft size={16} />
             </button>
           </form>
         </div>

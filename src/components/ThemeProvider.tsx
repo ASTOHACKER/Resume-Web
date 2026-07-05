@@ -16,12 +16,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") as Theme | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-      setTheme(systemTheme);
-    }
+    const resolvedTheme = savedTheme || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    
+    setTimeout(() => {
+      setTheme(resolvedTheme);
+    }, 0);
   }, []);
 
   useEffect(() => {
