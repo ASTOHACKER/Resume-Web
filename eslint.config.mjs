@@ -12,6 +12,18 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // AI skill / agent scaffolding — not shipped to Vercel:
+    ".agents/**",
+    ".claude/**",
+    ".cursor/**",
+    ".codex/**",
+    ".gemini/**",
+    ".impeccable/**",
+    ".hermes/**",
+    ".vscode/**",
+    "wiki/**",
+    "profile/**",
+    "public/**",
   ]),
 ]);
 

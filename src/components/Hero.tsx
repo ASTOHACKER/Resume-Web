@@ -31,13 +31,13 @@ export default function Hero() {
             </div>
 
             <div className="flex items-center gap-8 justify-center md:justify-start no-print">
-              <a href="https://www.facebook.com/narudom.okars/" className="text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-900 dark:text-zinc-100 border-b border-zinc-900 dark:border-zinc-100 pb-1 hover:opacity-60 transition-opacity">
+              <a href="https://www.facebook.com/narudom.okars/" target="_blank" rel="noopener noreferrer" className="text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-900 dark:text-zinc-100 border-b border-zinc-900 dark:border-zinc-100 pb-1 hover:opacity-60 transition-opacity">
                 Facebook
               </a>
-              <a href="https://www.instagram.com/nar_udom/" className="text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-900 dark:text-zinc-100 border-b border-zinc-900 dark:border-zinc-100 pb-1 hover:opacity-60 transition-opacity">
+              <a href="https://www.instagram.com/nar_udom/" target="_blank" rel="noopener noreferrer" className="text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-900 dark:text-zinc-100 border-b border-zinc-900 dark:border-zinc-100 pb-1 hover:opacity-60 transition-opacity">
                 Instagram
               </a>
-              <a href="https://github.com/ASTOHACKER" className="text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-900 dark:text-zinc-100 border-b border-zinc-900 dark:border-zinc-100 pb-1 hover:opacity-60 transition-opacity">
+              <a href="https://github.com/ASTOHACKER" target="_blank" rel="noopener noreferrer" className="text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-900 dark:text-zinc-100 border-b border-zinc-900 dark:border-zinc-100 pb-1 hover:opacity-60 transition-opacity">
                 GitHub
               </a>
             </div>

@@ -213,7 +213,7 @@ export default function Projects() {
                     <a 
                       href={project.github} 
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="text-[10px] uppercase tracking-[0.2em] font-bold border-b border-zinc-900 dark:border-zinc-100 pb-0.5 hover:opacity-60 transition-opacity"
                     >
                       GitHub [1]

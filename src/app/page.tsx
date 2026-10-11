@@ -12,7 +12,7 @@ import NpxInstall from "@/components/NpxInstall";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main id="main-content" className="min-h-screen bg-background text-foreground">
       <Navbar />
       <Hero />
       <About />
